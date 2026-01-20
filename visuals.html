@@ -208,26 +208,22 @@
             <script src="assets/js/main.js"></script>
 
             <script>
-                // Когда нажимаем на кнопку Full View
+
                 $('.open-modal').on('click', function(e) {
-                    e.preventDefault(); // Запрещаем переход по ссылке #
+                    e.preventDefault();
                     
-                    // Находим картинку в том же блоке, где кнопка
                     var imageSrc = $(this).closest('article').find('img').attr('src');
                     
-                    // Ставим эту картинку в модальное окно
                     $('#modalImg').attr('src', imageSrc);
                     
-                    // Показываем окно
                     $('#imageModal').fadeIn();
-                    // Блокируем скролл основной страницы
                     $('body').css('overflow', 'hidden');
                 });
 
-                // Когда нажимаем крестик или на темный фон - закрываем
+
                 $('.close-modal, #imageModal').on('click', function() {
                     $('#imageModal').fadeOut(function(){
-                        // Разблокируем скролл после закрытия
+
                          $('body').css('overflow', 'auto');
                     });
                 });
@@ -236,3 +232,4 @@
     </body>
 
 </html>
+
