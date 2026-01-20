@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Visuals | Andrei Blinov</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        
+<style>
+    header.major::after { display: none !important; }
+    .image:hover img { transform: none !important; transition: none !important; }
+
+
+    .posts article {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; 
+        height: 100%;
+        border: none !important; 
+        background: transparent !important;
+        margin-bottom: 5rem;
+    }
+
+ 
+    .posts article .image.fit {
+        height: 500px;          
+        width: 100%;
+        display: block;
+        margin: 0 0 2rem 0 !important;
+        overflow: hidden;        
+    }
+
+
+    .posts article .image.fit img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;       
+        object-position: center; 
+    }
+
+
+    .posts article header {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .posts article p {
+        flex-grow: 1;
+        margin-bottom: 2rem;
+        text-align: center;
+        min-height: 80px;
+    }
+
+    .posts article .actions {
+        text-align: center;
+        margin-top: auto;
+    }
+
+
+    #imageModal {
+        display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; 
+        overflow: hidden; background-color: rgba(0,0,0,0.95); z-index: 10000;
+    }
+    #modalImg {
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: auto; height: auto; max-width: 90%; max-height: 90vh;
+        object-fit: contain; border: 2px solid #fff;
+    }
+    .close-modal {
+        position: absolute; top: 20px; right: 35px; color: #f1f1f1;
+        font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10001;
+    }
+</style>
+    </head>
+    <body class="is-preload">
+
+        <div id="wrapper">
+
+                <header id="header">
+                        <a href="index.html" class="logo">Andrei Blinov</a>
+                    </header>
+
+                <nav id="nav">
+                        <ul class="links">
+                            <li><a href="index.html">About</a></li>
+                            <li class="active"><a href="visuals.html">Visuals</a></li>
+                            <li><a href="motion.html">Motion</a></li>
+                        </ul>
+                        <ul class="icons">
+                            <li><a href="https://www.instagram.com/salimshady9/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="https://t.me/andruha_svinoe_uho" class="icon brands fa-telegram"><span class="label">Telegram</span></a></li>
+                            <li><a href="https://github.com/1nn0c3ntt" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                        </ul>
+                    </nav>
+
+                <div id="main">
+
+                        <section class="post">
+                            <header class="major">
+                                <h1>Visuals & 3D</h1>
+                                <p>A collection of my 3D renders, graphic design projects,<br />
+                                and visual experiments.</p>
+                            </header>
+                        </section>
+
+                    <section class="posts">
+    
+                        <article>
+                            <header>
+                                <span class="date">Architecture</span>
+                                <h2><a href="#">Modern Villa<br />
+                                Concept</a></h2>
+                            </header>
+                            <a href="#" class="image fit"><img src="images/villa.jpg" alt="Modern House Render" /></a>
+                            <p>Architectural visualization of a modern residence with a pool area. Work in progress: focusing on minimal geometry, lighting, and water shaders.</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button open-modal">Full View</a></li>
+                            </ul>
+                        </article>
+    
+                        <article>
+                            <header>
+                                <span class="date">Product Visualization</span>
+                                <h2><a href="#">GreenHec<br />
+                                Charger Bundle</a></h2>
+                            </header>
+                            <a href="#" class="image fit"><img src="images/charger.jpg" alt="Product Render" /></a>
+                            <p>High-end commercial rendering for an e-commerce listing. Clean studio lighting to showcase material properties and product features.</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button open-modal">Full View</a></li>
+                            </ul>
+                        </article>
+    
+                        <article>
+                            <header>
+                                <span class="date">Visual Art</span>
+                                <h2><a href="#">Urban<br />
+                                Conditioning</a></h2>
+                            </header>
+                            <a href="#" class="image fit"><img src="images/building.jpg" alt="Brutalist Building" /></a>
+                            <p>A brutalist architectural concept. Experimenting with scale, repetition, and typography integrated into 3D geometry.</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button open-modal">Full View</a></li>
+                            </ul>
+                        </article>
+    
+                        <article>
+                            <header>
+                                <span class="date">Packaging Design</span>
+                                <h2><a href="#">Just Taste<br />
+                                Azuki Pasta</a></h2>
+                            </header>
+                            <a href="#" class="image fit"><img src="images/pasta.jpg" alt="Packaging Design" /></a>
+                            <p>Packaging layout and graphic design for a bio food brand. Focus on typography, color hierarchy, and print-ready visuals.</p>
+                            <ul class="actions special">
+                                <li><a href="#" class="button open-modal">Full View</a></li>
+                            </ul>
+                        </article>
+    
+                    </section>
+                    </div>
+
+                <footer id="footer">
+                        <section class="split contact" style="width: 100%;">
+                            <section class="alt">
+                                <h3>Address</h3>
+                                <p>Don-Bosco-Straße 3<br />
+                                90429 Nürnberg, Germany</p>
+                            </section>
+                            <section>
+                                <h3>Phone</h3>
+                                <p><a href="tel:+491772424010">+49 177 2424010</a></p>
+                            </section>
+                            <section>
+                                <h3>Email</h3>
+                                <p><a href="mailto:boring.boxes@gmail.com">boring.boxes@gmail.com</a></p>
+                            </section>
+                            <section>
+                                <h3>Social</h3>
+                                <ul class="icons alt">
+                                    <li><a href="https://www.instagram.com/salimshady9/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+                                    <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                                    <li><a href="https://t.me/andruha_svinoe_uho" class="icon brands alt fa-telegram"><span class="label">Telegram</span></a></li>
+                                    <li><a href="https://github.com/1nn0c3ntt" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+                                </ul>
+                            </section>
+                        </section>
+                    </footer>
+
+                <div id="copyright">
+						<ul><li>&copy; Andrei Blinov</li><li>Design:Andrei Blinov</a></li></ul>
+					</div>
+
+            </div>
+
+        <div id="imageModal" class="modal">
+            <span class="close-modal">&times;</span>
+            <img class="modal-content" id="modalImg">
+        </div>
+
+        <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/jquery.scrollex.min.js"></script>
+            <script src="assets/js/jquery.scrolly.min.js"></script>
+            <script src="assets/js/browser.min.js"></script>
+            <script src="assets/js/breakpoints.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+
+            <script>
+                // Когда нажимаем на кнопку Full View
+                $('.open-modal').on('click', function(e) {
+                    e.preventDefault(); // Запрещаем переход по ссылке #
+                    
+                    // Находим картинку в том же блоке, где кнопка
+                    var imageSrc = $(this).closest('article').find('img').attr('src');
+                    
+                    // Ставим эту картинку в модальное окно
+                    $('#modalImg').attr('src', imageSrc);
+                    
+                    // Показываем окно
+                    $('#imageModal').fadeIn();
+                    // Блокируем скролл основной страницы
+                    $('body').css('overflow', 'hidden');
+                });
+
+                // Когда нажимаем крестик или на темный фон - закрываем
+                $('.close-modal, #imageModal').on('click', function() {
+                    $('#imageModal').fadeOut(function(){
+                        // Разблокируем скролл после закрытия
+                         $('body').css('overflow', 'auto');
+                    });
+                });
+            </script>
+
+    </body>
+</html>
