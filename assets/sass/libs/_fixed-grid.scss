@@ -1,10 +1,4 @@
-// fixed-grid.scss v1.0 | @ajlkn | MIT licensed */
 
-// Mixins.
-
-	/// Initializes base fixed-grid classes.
-	/// @param {string} $vertical-align Vertical alignment of cells.
-	/// @param {string} $horizontal-align Horizontal alignment of cells.
 	@mixin fixed-grid-base($vertical-align: null, $horizontal-align: null) {
 
 		// Grid.
@@ -334,5 +328,6 @@
 					}
 
 			}
+
 
 	}
