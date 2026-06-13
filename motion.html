@@ -1,261 +1,563 @@
 <!DOCTYPE HTML>
-<html>
-  <head>
-    <link rel="icon" type="image/png" href="images/icon.png">
-    <title>Motion | Andrei Blinov</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="images/icon.png">
+  <title>Motion | Andrei Blinov</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-    <style>
-      header.major::after { display: none !important; }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
 
-      .video-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-        max-width: 1200px;
-        margin: 2rem auto 0 auto;
-      }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-      .video-item {
-        flex: 1 1 45%;
-        min-width: 320px;
-        margin-bottom: 2rem;
-      }
+    :root {
+      --black: #0e0e0e;
+      --off-white: #f7f6f3;
+      --mid: #8a8880;
+      --light: #d8d6d0;
+    }
 
-      .full-width {
-        flex: 1 1 100%;
-        max-width: 900px !important;
-        margin: 0 auto 3rem auto;
-      }
+    html { scroll-behavior: smooth; }
 
-      .video-container {
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-        background: #000;
-        border-radius: 4px;
-        overflow: hidden;
-      }
+    body {
+      background: var(--off-white);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
 
-      .video-container.vertical {
-        padding-bottom: 110%;
-        max-width: 350px;
-        margin: 0 auto;
-      }
+    /* ── NAV (FROSTED GLASS) ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(247, 246, 243, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(216, 214, 208, 0.4);
+    }
+    nav * { pointer-events: auto; }
 
-      .video-container iframe {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        border: 0;
-      }
+    .nav-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links li.active a { color: var(--black); }
+    .nav-icons { display: flex; gap: 1.4rem; list-style: none; }
+    .nav-icons a { color: var(--mid); font-size: 0.78rem; text-decoration: none; transition: color 0.25s; font-weight: 400; letter-spacing: 0.05em; }
+    .nav-icons a:hover { color: var(--black); }
 
-      .video-item h2 {
-        font-size: 0.8rem;
-        letter-spacing: 0.15rem;
-        text-transform: uppercase;
-        margin-bottom: 1rem;
-        text-align: center;
-      }
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      padding: 0 3rem 4.5rem;
+      gap: 4rem;
+      border-bottom: 1px solid var(--light);
+      overflow: hidden; 
+    }
 
-      .video-item p {
-        font-size: 0.85rem;
-        margin-top: 1rem;
-        text-align: center;
-        color: #555;
-      }
+    /* АБСТРАКТНАЯ ГЕОМЕТРИЯ НА ФОНЕ (MOTION TRAILS) */
+    .hero-abstract {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+    
+    .hero-abstract svg {
+      width: 100%;
+      height: 100%;
+    }
 
-      /* meta lines under description */
-      .meta {
-        margin-top: 0.6rem;
-        text-align: center;
-        font-size: 0.82rem;
-        opacity: 0.8;
-        color: #555;
-        line-height: 1.5;
-      }
-      .meta strong {
-        font-weight: 600;
-      }
-    </style>
-  </head>
+    /* Мягкое плавание целых групп по оси Y */
+    .wave-group-1 { 
+      animation: drift1 20s ease-in-out infinite alternate; 
+      transform-origin: center; 
+    }
+    .wave-group-2 { 
+      animation: drift2 25s ease-in-out infinite alternate-reverse; 
+      transform-origin: center; 
+    }
 
-  <body class="is-preload">
-    <div id="wrapper">
+    /* Настройки самих линий */
+    .spline {
+      stroke-dasharray: 1200 1200;
+      stroke-linecap: round;
+    }
+    
+    /* Разные скорости и направления для эффекта переплетения */
+    .spline-1 { animation: flowLine 25s linear infinite; }
+    .spline-2 { animation: flowLine 30s linear infinite reverse; }
+    .spline-3 { animation: flowLine 22s linear infinite; }
+    .spline-4 { animation: flowLine 28s linear infinite reverse; }
+    .spline-5 { animation: flowLine 35s linear infinite; }
+    .spline-6 { animation: flowLine 26s linear infinite reverse; }
 
-      <!-- Header -->
-      <header id="header">
-        <a href="index.html" class="logo">Andrei Blinov</a>
-      </header>
+    @keyframes flowLine {
+      from { stroke-dashoffset: 2400; }
+      to { stroke-dashoffset: 0; }
+    }
 
-      <!-- Nav -->
-      <nav id="nav">
-        <ul class="links">
-          <li><a href="index.html">About</a></li>
-          <li><a href="visuals.html">Visuals</a></li>
-          <li class="active"><a href="motion.html">Motion</a></li>
-        </ul>
-        <ul class="icons">
-          <li><a href="https://www.instagram.com/salimshady9/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-          <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-          <li><a href="https://t.me/andruha_svinoe_uho" class="icon brands fa-telegram"><span class="label">Telegram</span></a></li>
-        </ul>
-      </nav>
+    @keyframes drift1 {
+      from { transform: translateY(-20px) rotate(-1deg) scale(1.05); }
+      to { transform: translateY(20px) rotate(1deg) scale(1.05); }
+    }
+    @keyframes drift2 {
+      from { transform: translateY(20px) rotate(1.5deg) scale(1.05); }
+      to { transform: translateY(-20px) rotate(-1.5deg) scale(1.05); }
+    }
 
-      <!-- Main -->
-      <div id="main">
-        <section class="post">
-          <header class="major">
-            <h1>Motion Graphics</h1>
-            <p>3D animation, motion edits, and commercial storytelling.</p>
-          </header>
+    .hero-left {
+      padding-top: 9rem;
+      position: relative;
+      z-index: 2;
+    }
 
-          <div class="video-grid">
+    .hero-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.4rem;
+      display: block;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(4rem, 7vw, 7rem);
+      line-height: 0.93;
+      letter-spacing: -0.025em;
+      color: var(--black);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--mid);
+    }
 
-            <!-- Technical Visualization -->
-            <div class="video-item full-width">
-              <h2>Technical Visualization</h2>
+    .hero-right {
+      padding-top: 9rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 3rem;
+      position: relative;
+      z-index: 2;
+    }
 
-              <div class="video-container">
-                <iframe
-                  src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=bau_anim_t9h8wf"
-                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                  allowfullscreen>
-                </iframe>
-              </div>
+    .hero-stats {
+      display: flex;
+      gap: 3.5rem;
+    }
+    .hero-stat { display: flex; flex-direction: column; gap: 0.3rem; }
+    .hero-stat strong {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1;
+    }
+    .hero-stat span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
 
-              <p>
-                Construction process visualization: formwork setup, concrete pouring,
-                lighting installation, and modular room assembly.
-              </p>
+    .hero-desc {
+      font-size: 0.92rem;
+      color: var(--mid);
+      line-height: 1.75;
+      max-width: 380px;
+    }
 
-              <div class="meta">
-                <div><strong>Role:</strong> 3D animation, lighting, rendering</div>
-                <div><strong>Tools:</strong> Blender</div>
-              </div>
-            </div>
+    .hero-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .hero-contact p {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .hero-contact a {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1rem, 1.8vw, 1.5rem);
+      font-style: italic;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--light);
+      padding-bottom: 6px;
+      transition: border-color 0.3s, color 0.3s;
+      display: inline-block;
+    }
+    .hero-contact a:hover {
+      border-color: var(--black);
+    }
 
-            <!-- Just Taste: Exhibition -->
-            <div class="video-item">
-              <h2>Just Taste: Exhibition</h2>
+    /* ── VIDEO GRID ── */
+    .video-gallery {
+      padding: 6rem 3rem 8rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-              <div class="video-container vertical">
-                <iframe
-                  src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=Animation_Messe_odcmir"
-                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                  allowfullscreen>
-                </iframe>
-              </div>
+    .video-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .video-item.full {
+      grid-column: span 2;
+    }
 
-              <p>
-                Seamless silent loop for exhibition screens, focused on product clarity and key features.
-              </p>
+    /* Video Wrappers */
+    .video-container {
+      position: relative;
+      background: var(--black);
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .video-container.horizontal {
+      padding-bottom: 56.25%; /* 16:9 */
+      width: 100%;
+    }
+    .video-container.vertical {
+      padding-bottom: 110%;
+      max-width: 380px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
 
-              <div class="meta">
-                <div><strong>Role:</strong> motion loop edit, product-focused pacing</div>
-                <div><strong>Tools:</strong> Premiere Pro</div>
-              </div>
-            </div>
+    /* Video Typography */
+    .video-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .video-item.full .video-info {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .video-item:not(.full) .video-info {
+      text-align: center;
+      align-items: center;
+      max-width: 380px;
+      margin: 0 auto;
+    }
 
-            <!-- Paigh Apparel Ad -->
-            <div class="video-item">
-              <h2>Paigh Apparel Ad</h2>
+    .video-info h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.15;
+    }
+    .video-info p {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.7;
+    }
 
-              <div class="video-container vertical">
-                <iframe
-                  src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=pants_1_axro8a"
-                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                  allowfullscreen>
-                </iframe>
-              </div>
+    .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+    .video-item:not(.full) .meta {
+      align-items: center;
+    }
+    .meta span {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .meta strong {
+      color: var(--black);
+      font-weight: 500;
+      margin-right: 0.3rem;
+    }
 
-              <p>
-                Short social ad with dynamic cuts, pacing, and mood-driven product storytelling.
-              </p>
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--light);
+      padding: 3.5rem 3rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .footer-left { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-left p { font-size: 0.78rem; color: var(--mid); }
+    .footer-right { display: flex; gap: 2.5rem; }
+    .footer-right a {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-right a:hover { color: var(--black); }
 
-              <div class="meta">
-                <div><strong>Role:</strong> editing, pacing, storytelling cut</div>
-                <div><strong>Tools:</strong> Premiere Pro</div>
-              </div>
-            </div>
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
 
-            <!-- The Kiosk Scene -->
-            <div class="video-item full-width">
-              <h2>The Kiosk Scene</h2>
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      
+      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; min-height: auto; gap: 2.5rem; }
+      .hero-left, .hero-right { padding-top: 0; }
+      
+      .video-gallery { grid-template-columns: 1fr; padding: 4rem 1.5rem 5rem; gap: 5rem; }
+      .video-item.full { grid-column: span 1; }
+      
+      .video-item.full .video-info { grid-template-columns: 1fr; gap: 1.5rem; }
+      
+      .video-container.vertical { max-width: 100%; padding-bottom: 125%; }
+      .video-item:not(.full) .video-info { max-width: 100%; text-align: left; align-items: flex-start; }
+      .video-item:not(.full) .meta { align-items: flex-start; }
 
-              <div class="video-container">
-                <iframe
-                  src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=Cat_vjckos"
-                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                  allowfullscreen>
-                </iframe>
-              </div>
+      footer { flex-direction: column; gap: 2rem; padding: 2.5rem 1.5rem 4rem; }
+    }
+  </style>
+</head>
 
-              <p>
-                Atmospheric environment animation focused on mood, volumetric lighting, and snow particles.
-              </p>
+<body>
 
-              <div class="meta">
-                <div><strong>Role:</strong> 3D environment, lighting, animation</div>
-                <div><strong>Tools:</strong> Blender, Premiere Pro</div>
-              </div>
-            </div>
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Andrei Blinov</a>
+    <ul class="nav-links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="visuals.html">Visuals</a></li>
+      <li class="active"><a href="motion.html">Motion</a></li>
+    </ul>
+    <ul class="nav-icons">
+      <li><a href="https://www.instagram.com/salimshady9/">Ig</a></li>
+      <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">Li</a></li>
+      <li><a href="https://t.me/andruha_svinoe_uho">Tg</a></li>
+    </ul>
+  </nav>
 
-          </div>
-        </section>
-      </div>
-
-      <!-- Footer -->
-      <footer id="footer">
-        <section class="split contact" style="width: 100%;">
-
-          <section class="alt">
-            <h3>Address</h3>
-            <p>Don-Bosco-Straße 3<br />90429 Nürnberg, Germany</p>
-          </section>
-
-          <section>
-            <h3>Phone</h3>
-            <p><a href="tel:+491772424010">+49 177 2424010</a></p>
-          </section>
-
-          <section>
-            <h3>Email</h3>
-            <p><a href="mailto:andrei.blinov.3d@gmail.com">andrei.blinov.3d@gmail.com</a></p>
-          </section>
-
-          <section>
-            <h3>Social</h3>
-            <ul class="icons alt">
-              <li><a href="https://www.instagram.com/salimshady9/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-              <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-              <li><a href="https://t.me/andruha_svinoe_uho" class="icon brands alt fa-telegram"><span class="label">Telegram</span></a></li>
-              <li><a href="https://github.com/1nn0c3ntt" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-            </ul>
-          </section>
-
-        </section>
-      </footer>
-
-      <!-- Copyright -->
-      <div id="copyright">
-        <ul><li>&copy; Andrei Blinov</li><li>Design: Andrei Blinov</li></ul>
-      </div>
-
+  <!-- HERO (FULLSCREEN) -->
+  <section class="hero">
+    
+    <!-- Абстрактная плавающая геометрия (Сплайны на всю ширину) -->
+    <div class="hero-abstract">
+      <!-- Градиент делает так, чтобы края линий растворялись в фоне -->
+      <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="var(--mid)" stop-opacity="0" />
+            <stop offset="50%" stop-color="var(--mid)" stop-opacity="0.35" />
+            <stop offset="100%" stop-color="var(--mid)" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        
+        <g fill="none" stroke="url(#line-grad)" stroke-width="1.5">
+          <!-- Первая группа волн -->
+          <g class="wave-group-1">
+            <path class="spline spline-1" d="M -200,600 C 400,900 800,100 1600,400" />
+            <path class="spline spline-2" d="M -200,620 C 420,920 820,120 1600,420" />
+            <path class="spline spline-3" d="M -200,640 C 440,940 840,140 1600,440" />
+          </g>
+          
+          <!-- Вторая группа волн (пересекающаяся) -->
+          <g class="wave-group-2">
+            <path class="spline spline-4" d="M -200,200 C 500,-100 900,1000 1600,300" />
+            <path class="spline spline-5" d="M -200,220 C 520,-80 920,1020 1600,320" />
+            <path class="spline spline-6" d="M -200,240 C 540,-60 940,1040 1600,340" />
+          </g>
+        </g>
+      </svg>
     </div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <div class="hero-left reveal">
+      <span class="hero-eyebrow">Animation & Editing</span>
+      <h1>Motion<br><em>Graphics</em></h1>
+    </div>
+    
+    <div class="hero-right reveal">
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>3+</strong>
+          <span>Years in<br>3D</span>
+        </div>
+      </div>
+      <p class="hero-desc">3D animation, motion edits, and storytelling. Available for commercial projects.</p>
+      <div class="hero-contact">
+        <p>Open for work — send a message</p>
+        <a href="mailto:andrei.blinov.3d@gmail.com">andrei.blinov.3d@gmail.com</a>
+      </div>
+    </div>
+  </section>
 
-  </body>
+  <!-- VIDEO GALLERY -->
+  <section class="video-gallery">
+
+    <!-- 1. Technical Visualization (Horizontal Full-width) -->
+    <div class="video-item full reveal">
+      <div class="video-container horizontal">
+        <iframe
+          src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=bau_anim_t9h8wf"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <h2>Technical Visualization</h2>
+        <div>
+          <p>Construction process visualization: formwork setup, concrete pouring, lighting installation, and modular room assembly.</p>
+          <div class="meta">
+            <span><strong>Role:</strong> 3D animation, lighting, rendering</span>
+            <span><strong>Tools:</strong> Blender</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Just Taste: Exhibition (Vertical Half-width) -->
+    <div class="video-item reveal">
+      <div class="video-container vertical">
+        <iframe
+          src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=Animation_Messe_odcmir"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <h2>Just Taste: Exhibition</h2>
+        <p>Seamless silent loop for exhibition screens, focused on product clarity and key features.</p>
+        <div class="meta">
+          <span><strong>Role:</strong> motion loop edit, product-focused pacing</span>
+          <span><strong>Tools:</strong> Premiere Pro</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Paigh Apparel Ad (Vertical Half-width) -->
+    <div class="video-item reveal">
+      <div class="video-container vertical">
+        <iframe
+          src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=pants_1_axro8a"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <h2>Paigh Apparel Ad</h2>
+        <p>Short social ad with dynamic cuts, pacing, and mood-driven product storytelling.</p>
+        <div class="meta">
+          <span><strong>Role:</strong> editing, pacing, storytelling cut</span>
+          <span><strong>Tools:</strong> Premiere Pro</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. The Kiosk Scene (Horizontal Full-width) -->
+    <div class="video-item full reveal">
+      <div class="video-container horizontal">
+        <iframe
+          src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=Cat_vjckos"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <h2>The Kiosk Scene</h2>
+        <div>
+          <p>Atmospheric environment animation focused on mood, volumetric lighting, and snow particles.</p>
+          <div class="meta">
+            <span><strong>Role:</strong> 3D environment, lighting, animation</span>
+            <span><strong>Tools:</strong> Blender, Premiere Pro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <a href="index.html" class="nav-logo">Andrei Blinov</a>
+      <p>3D Artist · Product &amp; Environment Visualization</p>
+    </div>
+    <div class="footer-right">
+      <a href="https://www.instagram.com/salimshady9/">Instagram</a>
+      <a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">LinkedIn</a>
+      <a href="https://t.me/andruha_svinoe_uho">Telegram</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal logic
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+</body>
 </html>

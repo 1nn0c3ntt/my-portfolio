@@ -1,275 +1,833 @@
 <!DOCTYPE HTML>
-<html>
-  <head>
-    <link rel="icon" type="image/png" href="images/icon.png">
-    <title>Visuals | Andrei Blinov</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="images/icon.png">
+  <title>Visuals | Andrei Blinov</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-    <style>
-      header.major::after { display: none !important; }
-      .image:hover img { transform: none !important; transition: none !important; }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
 
-      .posts article {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        height: 100%;
-        border: none !important;
-        background: transparent !important;
-        margin-bottom: 5rem;
-      }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-      .posts article .image.fit {
-        height: 500px;
-        width: 100%;
-        display: block;
-        margin: 0 0 2rem 0 !important;
-        overflow: hidden;
-      }
+    :root {
+      --black: #0e0e0e;
+      --off-white: #f7f6f3;
+      --mid: #8a8880;
+      --light: #d8d6d0;
+    }
 
-      .posts article .image.fit img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover;
-        object-position: center;
-      }
+    html { scroll-behavior: smooth; }
 
-      .posts article header {
-        text-align: center;
-        margin-bottom: 1rem;
-      }
+    body {
+      background: var(--off-white);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
 
-      .posts article p {
-        flex-grow: 1;
-        margin-bottom: 0.6rem; 
-        text-align: center;
-        min-height: 80px;
-      }
+    /* ── NAV (FROSTED GLASS) ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(247, 246, 243, 0.85); 
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(216, 214, 208, 0.4);
+    }
 
-      .posts article .actions {
-        text-align: center;
-        margin-top: auto;
-      }
+    .nav-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links li.active a { color: var(--black); }
+    .nav-icons { display: flex; gap: 1.4rem; list-style: none; }
+    .nav-icons a { color: var(--mid); font-size: 0.78rem; text-decoration: none; transition: color 0.25s; font-weight: 400; letter-spacing: 0.05em; }
+    .nav-icons a:hover { color: var(--black); }
 
-      .tools {
-        opacity: 0.75;
-        font-size: 0.95em;
-        margin-top: 0;
-        margin-bottom: 2rem;
-        text-align: center;
-      }
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      padding: 0 3rem 4.5rem;
+      gap: 4rem;
+      border-bottom: 1px solid var(--light);
+      overflow: hidden; /* Важно для фоновой анимации */
+    }
 
-      #imageModal {
-        display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%;
-        overflow: hidden; background-color: rgba(0,0,0,0.95); z-index: 10000;
-      }
-      #modalImg {
-        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-        width: auto; height: auto; max-width: 90%; max-height: 90vh;
-        object-fit: contain; border: 2px solid #fff;
-      }
-      .close-modal {
-        position: absolute; top: 20px; right: 35px; color: #f1f1f1;
-        font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10001;
-      }
-    </style>
-  </head>
+    /* ── АБСТРАКТНЫЙ ЧЕРТЕЖ (CAD/BLUEPRINT) НА ФОНЕ ── */
+    .hero-abstract {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+    
+    .hero-abstract svg {
+      width: 100%;
+      height: 100%;
+    }
 
-  <body class="is-preload">
-    <div id="wrapper">
+    /* Анимация прорисовки линий (эффект чертежа) */
+    .arch-line {
+      stroke-dasharray: 1200 1200;
+      animation: drawLine 25s linear infinite;
+    }
+    .arch-line.reverse {
+      animation-direction: reverse;
+      animation-duration: 35s;
+    }
+    @keyframes drawLine {
+      from { stroke-dashoffset: 2400; }
+      to { stroke-dashoffset: 0; }
+    }
 
-      <header id="header">
-        <a href="index.html" class="logo">Andrei Blinov</a>
-      </header>
+    /* Медленное плавание групп осей */
+    .arch-group-1 {
+      animation: floatArch1 40s ease-in-out infinite alternate;
+    }
+    .arch-group-2 {
+      animation: floatArch2 45s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes floatArch1 {
+      from { transform: translate(0, 0); }
+      to { transform: translate(30px, -20px); }
+    }
+    @keyframes floatArch2 {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-30px, 20px); }
+    }
 
-      <nav id="nav">
-        <ul class="links">
-          <li><a href="index.html">About</a></li>
-          <li class="active"><a href="visuals.html">Visuals</a></li>
-          <li><a href="motion.html">Motion</a></li>
-        </ul>
-        <ul class="icons">
-          <li><a href="https://www.instagram.com/salimshady9/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-          <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-          <li><a href="https://t.me/andruha_svinoe_uho" class="icon brands fa-telegram"><span class="label">Telegram</span></a></li>
-        </ul>
-      </nav>
+    /* Вращение технических пунктирных орбит */
+    .arch-circle {
+      transform-origin: 1050px 400px;
+      animation: spinCircle 80s linear infinite;
+    }
+    .arch-circle.reverse {
+      animation-direction: reverse;
+      animation-duration: 120s;
+    }
+    @keyframes spinCircle {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
-      <div id="main">
-        <section class="post">
-          <header class="major">
-            <h1>Visuals & 3D</h1>
-            <p>
-              3D renders and design projects focused on lighting, composition,<br />
-              and product storytelling.
-            </p>
-          </header>
-        </section>
+    .hero-left {
+      padding-top: 9rem; 
+      position: relative;
+      z-index: 2;
+    }
 
-        <section class="posts">
+    .hero-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.4rem;
+      display: block;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(4rem, 7vw, 7rem);
+      line-height: 0.93;
+      letter-spacing: -0.025em;
+      color: var(--black);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--mid);
+    }
 
-                    <article>
-            <header>
-              <span class="date">Environment design</span>
-              <h2>Miami<br />Scene</h2>
-            </header>
-            <div class="image fit"><img src="images/miami.png" alt="Product Render" /></div>
-            <p>
-             Sunny retro street scene for an environment concept. <br />
-            Atmospheric lighting and soft tones to establish depth and mood.
-            </p>
-            <p class="tools"><strong>Tools:</strong> Blender, Photoshop</p>
-            <ul class="actions special">
-              <li><a href="images/miami.png" class="button open-modal">View project</a></li>
-            </ul>
-          </article>
+    .hero-right {
+      padding-top: 9rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 3rem;
+      position: relative;
+      z-index: 2;
+    }
 
-          <article>
-            <header>
-              <span class="date">Product Visualization</span>
-              <h2>GreenHec<br />Charger Bundle</h2>
-            </header>
-            <div class="image fit"><img src="images/charger.jpg" alt="Product Render" /></div>
-            <p>
-              Commercial product render for an e-commerce listing.
-              Studio lighting and material definition for clear product hierarchy.
-            </p>
-            <p class="tools"><strong>Tools:</strong> Blender, Photoshop</p>
-            <ul class="actions special">
-              <li><a href="images/charger.jpg" class="button open-modal">View project</a></li>
-            </ul>
-          </article>
+    .hero-stats {
+      display: flex;
+      gap: 3.5rem;
+    }
+    .hero-stat { display: flex; flex-direction: column; gap: 0.3rem; }
+    .hero-stat strong {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1;
+    }
+    .hero-stat span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
 
-          <article>
-            <header>
-              <span class="date">Packaging Design</span>
-              <h2>Just Taste<br />Azuki Pasta</h2>
-            </header>
-            <div class="image fit"><img src="images/pasta.jpg" alt="Packaging Design" /></div>
-            <p>
-              Packaging layout and key visuals for a food brand —
-              typography, hierarchy, and print-ready composition.
-            </p>
-            <p class="tools"><strong>Tools:</strong> Photoshop, Illustrator</p>
-            <ul class="actions special">
-              <li><a href="images/pasta.jpg" class="button open-modal">View project</a></li>
-            </ul>
-          </article>
+    .hero-desc {
+      font-size: 0.92rem;
+      color: var(--mid);
+      line-height: 1.75;
+      max-width: 380px;
+    }
 
-          <article>
-            <header>
-              <span class="date">Architecture</span>
-              <h2>Modern Villa<br />Concept</h2>
-            </header>
-            <div class="image fit"><img src="images/villa.jpg" alt="Modern House Render" /></div>
-            <p>
-              Architectural concept study focused on minimal geometry,
-              lighting, and material exploration.
-            </p>
-            <p class="tools"><strong>Tools:</strong> Blender</p>
-            <ul class="actions special">
-              <li><a href="images/villa.jpg" class="button open-modal">View project</a></li>
-            </ul>
-          </article>
+    .hero-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .hero-contact p {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .hero-contact a {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1rem, 1.8vw, 1.5rem);
+      font-style: italic;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--light);
+      padding-bottom: 6px;
+      transition: border-color 0.3s, color 0.3s;
+      display: inline-block;
+    }
+    .hero-contact a:hover {
+      border-color: var(--black);
+    }
 
-          <article>
-            <header>
-              <span class="date">Visual Art</span>
-              <h2>Urban<br />Conditioning</h2>
-            </header>
-            <div class="image fit"><img src="images/building.jpg" alt="Brutalist Building" /></div>
-            <p>
-              Brutalist visual study exploring repetition, scale,
-              and typography integrated into 3D space.
-            </p>
-            <p class="tools"><strong>Tools:</strong> Blender, Photoshop</p>
-            <ul class="actions special">
-              <li><a href="images/building.jpg" class="button open-modal">View project</a></li>
-            </ul>
-          </article>
+    /* ── GALLERY ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem 2.5rem;
+      padding: 0 3rem;
+    }
+    
+    .gallery-top { padding-top: 5rem; padding-bottom: 4rem; }
+    .gallery-bot { padding-top: 4rem; padding-bottom: 8rem; }
 
-          <article style="margin-left: auto; margin-right: auto;">
-            <header>
-              <span class="date">3D Illustration</span>
-              <h2>Stylized Village<br />Scene</h2>
-            </header>
-            <div class="image fit"><img src="images/village.png" alt="Anime Style 3D Scene" /></div>
-            <p>
-              Stylized environment study exploring anime aesthetics,
-              procedural shading, and NPR techniques.
-            </p>
-            <p class="tools"><strong>Tools:</strong> Blender</p>
-            <ul class="actions special">
-              <li><a href="images/village.png" class="button open-modal">View project</a></li>
-            </ul>
-          </article>
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: #e4e2db;
+    }
 
-        </section>
-      </div>
+    .gallery-top .gallery-item:nth-child(1) { aspect-ratio: 4/3; } /* Лента */
+    .gallery-top .gallery-item:nth-child(2) { aspect-ratio: 4/3; margin-top: 6rem; } /* Замок */
+    
+    .gallery-top .gallery-item:nth-child(3) { 
+      grid-column: span 2; 
+      aspect-ratio: 1/1; 
+      width: 100%; 
+      max-width: 800px; 
+      margin: 4rem auto 0; 
+    }
 
-      <footer id="footer">
-        <section class="split contact" style="width: 100%;">
-          <section class="alt">
-            <h3>Address</h3>
-            <p>Don-Bosco-Straße 3<br />90429 Nürnberg, Germany</p>
-          </section>
-          <section>
-            <h3>Phone</h3>
-            <p><a href="tel:+491772424010">+49 177 2424010</a></p>
-          </section>
-          <section>
-            <h3>Email</h3>
-            <p><a href="mailto:andrei.blinov.3d@gmail.com">andrei.blinov.3d@gmail.com</a></p>
-          </section>
-          <section>
-            <h3>Social</h3>
-            <ul class="icons alt">
-              <li><a href="https://www.instagram.com/salimshady9/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-              <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-              <li><a href="https://t.me/andruha_svinoe_uho" class="icon brands alt fa-telegram"><span class="label">Telegram</span></a></li>
-              <li><a href="https://github.com/1nn0c3ntt" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-            </ul>
-          </section>
-        </section>
-      </footer>
+    .gallery-bot .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 21/9; } /* Майами */
+    .gallery-bot .gallery-item:nth-child(2) { aspect-ratio: 4/3; margin-top: 4rem; } /* Гринхек */
+    .gallery-bot .gallery-item:nth-child(3) { aspect-ratio: 4/3; } /* Деревня */
+    .gallery-bot .gallery-item:nth-child(4) { aspect-ratio: 3/4; } /* Вилла */
+    .gallery-bot .gallery-item:nth-child(5) { aspect-ratio: 3/4; margin-top: 6rem; } /* Кондеры */
 
-      <div id="copyright">
-        <ul><li>&copy; Andrei Blinov</li><li>Design:Andrei Blinov</li></ul>
-      </div>
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
 
+    .gallery-item .info {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.15) 40%, transparent 65%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem 2.2rem;
+    }
+
+    .info-meta {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0.5rem;
+      transform: translateY(4px);
+      transition: transform 0.5s ease, color 0.4s;
+    }
+    .gallery-item:hover .info-meta { color: rgba(255,255,255,0.75); transform: none; }
+
+    .info-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.15;
+      transform: translateY(4px);
+      transition: transform 0.5s ease, color 0.4s;
+    }
+    .gallery-item:hover .info-title { color: #fff; transform: none; }
+
+    .info-tools {
+      margin-top: 0.6rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0);
+      transition: color 0.4s 0.05s;
+    }
+    .gallery-item:hover .info-tools { color: rgba(255,255,255,0.45); }
+
+    /* ── FEATURED: BARTHELME ── */
+    .featured {
+      border-top: 1px solid var(--light);
+      border-bottom: 1px solid var(--light);
+      margin: 0 3rem;
+      padding: 5rem 0;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .feat-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .feat-images img {
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s ease;
+    }
+    .feat-images img:first-child {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+    }
+    .feat-images img:not(:first-child) { aspect-ratio: 1/1; }
+    .feat-images img:hover { transform: scale(1.02); }
+
+    .feat-copy {
+      padding-top: 0.5rem;
+      position: sticky;
+      top: 8rem;
+    }
+    .feat-eyebrow {
+      font-size: 0.66rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.6rem;
+      display: block;
+    }
+    .feat-copy h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 1.8rem;
+    }
+    .feat-copy p {
+      font-size: 0.9rem;
+      color: var(--mid);
+      line-height: 1.8;
+      margin-bottom: 2.8rem;
+      max-width: 420px;
+    }
+    .feat-stats {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 2.8rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--light);
+    }
+    .feat-stats div { display: flex; flex-direction: column; gap: 0.35rem; }
+    .feat-stats strong {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+    }
+    .feat-stats span {
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 4px;
+      transition: opacity 0.25s;
+    }
+    .cta-link:hover { opacity: 0.4; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--light);
+      padding: 3.5rem 3rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .footer-left { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-left p { font-size: 0.78rem; color: var(--mid); }
+    .footer-right { display: flex; gap: 2.5rem; }
+    .footer-right a {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-right a:hover { color: var(--black); }
+
+    /* ── MODAL ── */
+    #imageModal {
+      position: fixed; inset: 0;
+      background: rgba(247,246,243,0.97);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5rem 3rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    #imageModal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #modalImg {
+      max-width: 88vw;
+      max-height: 85vh;
+      object-fit: contain;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+      transform: scale(0.96);
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    #imageModal.open #modalImg { transform: scale(1); }
+
+    .modal-close {
+      position: fixed;
+      top: 2rem; right: 2.5rem;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--black);
+      cursor: pointer;
+      background: none;
+      border: none;
+      opacity: 0.4;
+      transition: opacity 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .modal-close:hover { opacity: 1; }
+
+    .modal-info {
+      position: fixed;
+      bottom: 3rem;
+      left: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .modal-info-cat {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .modal-info-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+    .modal-info-tools {
+      margin-top: 0.2rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .modal-nav {
+      position: fixed;
+      bottom: 3rem;
+      right: 3rem;
+      display: flex;
+      gap: 0.8rem;
+    }
+    .modal-nav button {
+      background: none;
+      border: 1px solid var(--light);
+      color: var(--black);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s;
+    }
+    .modal-nav button:hover {
+      background: var(--black);
+      color: var(--off-white);
+      border-color: var(--black);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; min-height: auto; gap: 2.5rem; }
+      .hero-left, .hero-right { padding-top: 0; }
+      .gallery { grid-template-columns: 1fr; padding-left: 1.5rem; padding-right: 1.5rem; gap: 2rem; }
+      
+      .gallery-top .gallery-item:nth-child(n),
+      .gallery-bot .gallery-item:nth-child(n) { grid-column: span 1 !important; margin-top: 0 !important; max-width: 100% !important; }
+      
+      .gallery-top .gallery-item:nth-child(1),
+      .gallery-top .gallery-item:nth-child(2),
+      .gallery-top .gallery-item:nth-child(3),
+      .gallery-bot .gallery-item:nth-child(2),
+      .gallery-bot .gallery-item:nth-child(3) { aspect-ratio: 1/1 !important; }
+
+      .gallery-bot .gallery-item:nth-child(1) { aspect-ratio: 16/9 !important; } 
+      
+      .gallery-bot .gallery-item:nth-child(4),
+      .gallery-bot .gallery-item:nth-child(5) { aspect-ratio: 3/4 !important; } 
+      
+      .featured { grid-template-columns: 1fr; margin: 0 1.5rem; gap: 2rem; padding: 3rem 0; }
+      .feat-copy { position: static; }
+      footer { flex-direction: column; gap: 2rem; padding: 2.5rem 1.5rem 4rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Andrei Blinov</a>
+    <ul class="nav-links">
+      <li><a href="index.html">About</a></li>
+      <li class="active"><a href="visuals.html">Visuals</a></li>
+      <li><a href="motion.html">Motion</a></li>
+    </ul>
+    <ul class="nav-icons">
+      <li><a href="https://www.instagram.com/salimshady9/">Ig</a></li>
+      <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">Li</a></li>
+      <li><a href="https://t.me/andruha_svinoe_uho">Tg</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    
+    <div class="hero-abstract">
+      <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="vis-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--mid)" stop-opacity="0" />
+            <stop offset="50%" stop-color="var(--mid)" stop-opacity="0.3" />
+            <stop offset="100%" stop-color="var(--mid)" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        
+        <g fill="none" stroke="url(#vis-grad)" stroke-width="1">
+          <g class="arch-group-1">
+            <line x1="-200" y1="100" x2="1600" y2="700" class="arch-line" />
+            <line x1="-200" y1="130" x2="1600" y2="730" class="arch-line reverse" />
+            <line x1="-200" y1="160" x2="1600" y2="760" class="arch-line" />
+            
+            <line x1="800" y1="-200" x2="1100" y2="1000" class="arch-line" />
+            <line x1="830" y1="-200" x2="1130" y2="1000" class="arch-line reverse" />
+          </g>
+          
+          <g class="arch-group-2">
+            <line x1="1600" y1="-100" x2="-200" y2="800" class="arch-line" />
+            <line x1="1600" y1="-70" x2="-200" y2="830" class="arch-line reverse" />
+            
+            <circle cx="1050" cy="400" r="250" class="arch-circle" stroke-dasharray="4 8" />
+            <circle cx="1050" cy="400" r="380" class="arch-circle reverse" stroke-dasharray="1 5" stroke-width="1.5" />
+            <circle cx="1050" cy="400" r="420" stroke-opacity="0.1" />
+            
+            <line x1="550" y1="400" x2="1550" y2="400" class="arch-line" stroke-dasharray="2 4" stroke-width="0.5" />
+            <line x1="1050" y1="-100" x2="1050" y2="900" class="arch-line reverse" stroke-dasharray="2 4" stroke-width="0.5" />
+          </g>
+        </g>
+      </svg>
     </div>
 
-    <div id="imageModal" class="modal">
-      <span class="close-modal">&times;</span>
-      <img class="modal-content" id="modalImg">
+    <div class="hero-left reveal">
+      <span class="hero-eyebrow">3D · CGI · Visualization</span>
+      <h1>Visual<br><em>Works</em></h1>
+    </div>
+    <div class="hero-right reveal">
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>50+</strong>
+          <span>Commercial<br>renders</span>
+        </div>
+        <div class="hero-stat">
+          <strong>100%</strong>
+          <span>Technical<br>Accuracy</span>
+        </div>
+        <div class="hero-stat">
+          <strong>3+</strong>
+          <span>Years in<br>3D</span>
+        </div>
+      </div>
+      <p class="hero-desc">Product renders, environment concepts, and architectural studies — built entirely in 3D. Available for commercial projects and freelance work.</p>
+      <div class="hero-contact">
+        <p>Open for work — send a message</p>
+        <a href="mailto:andrei.blinov.3d@gmail.com">andrei.blinov.3d@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery gallery-top">
+
+    <div class="gallery-item reveal" data-src="images/led_Streifen_Icon.png" data-cat="Product Visualization" data-title="Flexible LED Strip" data-tools="Blender">
+      <img src="images/led_Streifen_Icon.png" alt="Flexible LED Strip Solution" loading="lazy" />
+      <div class="info">
+        <div class="info-meta">Product Visualization</div>
+        <div class="info-title">Flexible LED<br>Strip Solution</div>
+        <div class="info-tools">Blender</div>
+      </div>
     </div>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <div class="gallery-item reveal" data-src="images/castle.png" data-cat="Environment Design" data-title="Medieval Castle Stained Glass" data-tools="Blender">
+      <img src="images/castle.png" alt="Medieval Castle Stained Glass" loading="lazy" />
+      <div class="info">
+        <div class="info-meta">Environment Design</div>
+        <div class="info-title">Medieval Castle<br>Stained Glass</div>
+        <div class="info-tools">Blender</div>
+      </div>
+    </div>
 
-    <script>
-      $('.open-modal').on('click', function(e) {
-        e.preventDefault();
-        var imageSrc = $(this).closest('article').find('img').attr('src');
-        $('#modalImg').attr('src', imageSrc);
-        $('#imageModal').fadeIn();
-        $('body').css('overflow', 'hidden');
+    <div class="gallery-item reveal" data-src="images/car.png" data-cat="Concept Art" data-title="In-N-Out Space Highway" data-tools="Blender · Photoshop">
+      <img src="images/car.png" alt="In-N-Out Space Highway" loading="lazy" />
+      <div class="info">
+        <div class="info-meta">Concept Art · 3D Visual</div>
+        <div class="info-title">In-N-Out<br>Space Highway</div>
+        <div class="info-tools">Blender · Photoshop</div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="featured reveal">
+    <div class="feat-images">
+      <img src="images/profile/photo_1_2026-06-13_12-04-11.jpg" alt="Barthelme LED Profiles hero" loading="lazy" />
+      <img src="images/profile/photo_1_2026-06-13_12-04-11.jpg" alt="Barthelme detail 1" loading="lazy" />
+      <img src="images/profile/photo_1_2026-06-13_12-04-11.jpg" alt="Barthelme detail 2" loading="lazy" />
+    </div>
+    <div class="feat-copy">
+      <span class="feat-eyebrow">Featured Case · CGI Pack</span>
+      <h3>Barthelme<br>LED Profiles</h3>
+      <p>A comprehensive professional case study consisting of 51 studio product renders delivered for the official Barthelme LED Solutions product catalog. Built around strict blueprint accuracy and advanced material response.</p>
+      <div class="feat-stats">
+        <div><strong>51</strong><span>Renders<br>Delivered</span></div>
+        <div><strong>2</strong><span>Tools<br>Used</span></div>
+        <div><strong>1</strong><span>Satisfied<br>Client</span></div>
+      </div>
+      <a href="profiles-gallery.html" class="cta-link">Explore Full Pack →</a>
+    </div>
+  </div>
+
+  <section class="gallery gallery-bot">
+
+    <div class="gallery-item reveal" data-src="images/Miami.png" data-cat="Environment Design" data-title="Miami Retro Scene" data-tools="Blender · Photoshop">
+      <img src="images/Miami.png" alt="Miami Retro Scene" loading="lazy" />
+      <div class="info">
+        <div class="info-meta">Environment Design</div>
+        <div class="info-title">Miami<br>Retro Scene</div>
+        <div class="info-tools">Blender · Photoshop</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" data-src="images/charger.jpg" data-cat="Product Visualization" data-title="GreenHec Charger Bundle" data-tools="Blender · Photoshop">
+      <img src="images/charger.jpg" alt="GreenHec Charger Bundle" loading="lazy" />
+      <div class="info">
+        <div class="info-meta">Product Visualization</div>
+        <div class="info-title">GreenHec<br>Charger Bundle</div>
+        <div class="info-tools">Blender · Photoshop</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" data-src="images/village.png" data-cat="3D Illustration" data-title="Stylized Village Scene" data-tools="Blender">
+      <img src="images/village.png" alt="Stylized Village Scene" loading="lazy" />
+      <div class="info">
+        <div class="info-meta">3D Illustration</div>
+        <div class="info-title">Stylized<br>Village Scene</div>
+        <div class="info-tools">Blender</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" data-src="images/villa.jpg" data-cat="ArchViz Concept" data-title="Modern Villa Space" data-tools="Blender">
+      <img src="images/villa.jpg" alt="Modern Villa Space" loading="lazy" />
+      <div class="info">
+        <div class="info-meta">ArchViz Concept</div>
+        <div class="info-title">Modern<br>Villa Space</div>
+        <div class="info-tools">Blender</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" data-src="images/building.jpg" data-cat="Visual Art · CGI Study" data-title="Urban Conditioning" data-tools="Blender · Photoshop">
+      <img src="images/building.jpg" alt="Urban Conditioning" loading="lazy" />
+      <div class="info">
+        <div class="info-meta">Visual Art · CGI Study</div>
+        <div class="info-title">Urban<br>Conditioning</div>
+        <div class="info-tools">Blender · Photoshop</div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="footer-left">
+      <a href="index.html" class="nav-logo">Andrei Blinov</a>
+      <p>3D Artist · Product &amp; Environment Visualization</p>
+    </div>
+    <div class="footer-right">
+      <a href="https://www.instagram.com/salimshady9/">Instagram</a>
+      <a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">LinkedIn</a>
+      <a href="https://t.me/andruha_svinoe_uho">Telegram</a>
+    </div>
+  </footer>
+
+  <div id="imageModal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <img id="modalImg" src="" alt="Project preview" />
+    
+    <div class="modal-info">
+      <div class="modal-info-cat" id="modalCat"></div>
+      <div class="modal-info-title" id="modalTitle"></div>
+      <div class="modal-info-tools" id="modalTools"></div>
+    </div>
+
+    <div class="modal-nav">
+      <button id="modalPrev">← Prev</button>
+      <button id="modalNext">Next →</button>
+    </div>
+  </div>
+
+  <script>
+    // Scroll reveal with stagger
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          io.unobserve(e.target);
+        }
       });
+    }, { threshold: 0.06 });
+    revealEls.forEach(el => io.observe(el));
 
-      $('.close-modal, #imageModal').on('click', function() {
-        $('#imageModal').fadeOut(function(){
-          $('body').css('overflow', 'auto');
-        });
-      });
-    </script>
+    // Modal logic
+    const items = Array.from(document.querySelectorAll('.gallery-item[data-src]'));
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalCat = document.getElementById('modalCat');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalTools = document.getElementById('modalTools');
+    let current = 0;
 
-  </body>
+    function openModal(index) {
+      current = index;
+      const el = items[index];
+      modalImg.src = el.dataset.src;
+      modalCat.textContent = el.dataset.cat || '';
+      modalTitle.textContent = el.dataset.title || '';
+      modalTools.textContent = el.dataset.tools || '';
+      
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+      modal.classList.remove('open');
+      setTimeout(() => { if (!modal.classList.contains('open')) modalImg.src = ''; }, 500);
+      document.body.style.overflow = '';
+    }
+
+    items.forEach((el, i) => el.addEventListener('click', () => openModal(i)));
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.getElementById('modalPrev').addEventListener('click', e => {
+      e.stopPropagation();
+      openModal((current - 1 + items.length) % items.length);
+    });
+    document.getElementById('modalNext').addEventListener('click', e => {
+      e.stopPropagation();
+      openModal((current + 1) % items.length);
+    });
+    document.addEventListener('keydown', e => {
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') openModal((current - 1 + items.length) % items.length);
+      if (e.key === 'ArrowRight') openModal((current + 1) % items.length);
+    });
+  </script>
+</body>
 </html>

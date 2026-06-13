@@ -1,237 +1,596 @@
 <!DOCTYPE HTML>
-<html>
-	<head>
-		<link rel="icon" type="image/png" href="images/icon.png">
-		<title>Andrei Blinov | Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-<style>
-    header.major::after {
-        display: none !important;
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="images/icon.png">
+  <title>About | Andrei Blinov</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0e0e0e;
+      --off-white: #f7f6f3;
+      --mid: #8a8880;
+      --light: #d8d6d0;
     }
 
-    .image:hover img {
-        transform: none !important;
-        transition: none !important;
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--off-white);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
     }
 
-	.hero-title {
-  text-transform: none !important;
-  letter-spacing: 0.04em !important;
-  font-size: 1.6em !important;
-  margin-top: 0.5em !important;
-}
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(247, 246, 243, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(216, 214, 208, 0.4);
+    }
+    nav * { pointer-events: auto; }
 
-.hero-sub {
-  font-style: normal !important;
-  opacity: 0.75 !important;
-  max-width: 46rem;
-  margin: 0.8em auto 0 auto !important;
-  line-height: 1.6 !important;
-}
-header.major .actions {
-  margin-top: 2rem;
-}
+    .nav-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links li.active a { color: var(--black); }
+    .nav-icons { display: flex; gap: 1.4rem; list-style: none; }
+    .nav-icons a { color: var(--mid); font-size: 0.78rem; text-decoration: none; transition: color 0.25s; font-weight: 400; letter-spacing: 0.05em; }
+    .nav-icons a:hover { color: var(--black); }
 
-</style>
-	</head>
-	<body class="is-preload">
+    /* ── ABOUT HERO (EDITORIAL LAYOUT) ── */
+    .about-hero {
+      height: 100vh;
+      min-height: 600px;
+      padding: 0; 
+      display: grid;
+      grid-template-columns: 1.6fr 1.4fr; 
+      align-items: stretch; 
+      border-bottom: 1px solid var(--light);
+      position: relative;
+      overflow: hidden;
+      background: var(--off-white);
+    }
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+    /* ЛЕВАЯ ЧАСТЬ: ТЕКСТ ВНИЗУ */
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end; /* Опустили текст вниз */
+      padding: 9rem 4rem 4.5rem 3rem; /* Нижний отступ как на остальных страницах */
+    }
 
-				<!-- Intro -->
-		<div id="intro">
-		    <h1>Andrei Blinov<br />
-		    3D Portfolio</h1>
-		    <p>Media Engineering Student & 3D Artist based in Nuremberg.<br />
-		    Visuals, 3D Design, and Graphic Design.</p>
-		    <ul class="actions">
-		        <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Work</a></li>
-		    </ul>
-		</div>
-
-				<!-- Header -->
-					<header id="header">
-    					<a href="index.html" class="logo">Andrei Blinov</a>
-					</header>
-
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">About</a></li>
-							<li><a href="visuals.html">Visuals</a></li>
-							<li><a href="motion.html">Motion</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.instagram.com/salimshady9/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							<li><a href="https://t.me/andruha_svinoe_uho" class="icon brands fa-telegram"><span class="label">Telegram</span></a></li>
-						</ul>
-					</nav>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Featured Post -->
-<header class="major">
-  <h1>Hi, I'm Andrei.</h1>
-
-  <h2 class="hero-title">
-    I create 3D visuals and motion-driven stories.
-  </h2>
-
-  <p class="hero-sub">
-    Media Engineering student at TH Nürnberg with a Fine Arts foundation.<br />
-    Open for Werkstudent / Praktikum roles.
-  </p>
-
-  <ul class="actions special">
-    <li><a href="files/Andrei_Blinov_CV.pdf" class="button icon solid fa-download" download>Download CV (DE)</a></li>
-  </ul>
-</header>
-
-					
-					    <a class="image main"><img src="images/andrei.jpg" alt="" /></a>
-					
-
-						<!-- Posts -->
-<!-- Posts -->
-<section class="posts">
-
-  <!-- 1) Nuremberg -->
-  <article>
-    <header>
-      <span class="date">15.03.2024 – Present</span>
-      <h2>Media Engineering:<br />Nuremberg</h2>
-    </header>
-
-    <div class="image fit"><img src="images/ohm.jpg" alt="TH Nürnberg" /></div>
-
-    <p>
-      Moved to Nuremberg for an Orientation Semester with an intensive focus on Blender and 3D fundamentals.
-      Since <strong>01.10.2024</strong>, I am officially a Media Engineering student at TH Nürnberg, combining tech & art.
-    </p>
-  </article>
-
-  <!-- 2) Regensburg -->
-  <article>
-    <header>
-      <span class="date">01.10.2023 – 15.03.2024</span>
-      <h2>The Pivot:<br />From Architecture to 3D</h2>
-    </header>
-
-    <div class="image fit"><img src="images/regensburg.jpg" alt="Regensburg" /></div>
-
-    <p>
-      Started studying Architecture at OTH Regensburg, then shifted my focus toward 3D and visual design.
-      I’m most motivated by lighting, composition, and storytelling through visuals.
-    </p>
-  </article>
-
-  <!-- 3) Coburg -->
-  <article>
-    <header>
-      <span class="date">21.09.2022 – 01.08.2023</span>
-      <h2>The Move to Germany:<br />Coburg</h2>
-    </header>
-
-    <div class="image fit"><img src="images/coburg.jpg" alt="Coburg" /></div>
-
-    <p>
-      Moved to Coburg to attend the Studienkolleg (T-Kurs).
-      Graduated with a final grade of <strong>1.8</strong>.
-    </p>
-  </article>
-
-  <!-- 4) Barnaul -->
-  <article>
-    <header>
-      <span class="date">10.08.2004 – 01.04.2022</span>
-      <h2>The Foundation:<br />Barnaul, Russia</h2>
-    </header>
-
-    <div class="image fit"><img src="images/barnaul.jpg" alt="Barnaul" /></div>
-
-    <div style="text-align: left; padding: 0 10px;">
-      <p>I was born in Barnaul. Here I built my creative discipline:</p>
-
-      <p>
-        <strong>01.05.2021:</strong><br />
-        Graduated Art School No. 1 with a perfect <strong>1.0 GPA</strong>.
-      </p>
-
-      <p>
-        <strong>01.04.2022:</strong><br />
-        Graduated Lyceum 129, also with a <strong>1.0 GPA</strong>.
-      </p>
-    </div>
-  </article>
-
-</section>
-
-
-
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
+    /* ── НОВАЯ АНИМАЦИЯ (ДИНАМИЧЕСКИЙ 3D-ГРИД) ── */
+    .bg-anim {
+      position: absolute;
+      top: 50%;
+      left: 60%; /* Сдвинуто правее к фото */
+      transform: translate(-50%, -50%);
+      width: 90vmin;
+      height: 90vmin;
+      max-width: 900px;
+      max-height: 900px;
+      z-index: 0;
+      pointer-events: none;
+      perspective: 1000px; /* Глубина 3D-пространства */
+    }
     
-					    <section class="split contact" style="width: 100%;">
-						
-					        <section class="alt">
-					            <h3>Address</h3>
-					            <p>Don-Bosco-Straße 3<br />
-					            90429 Nürnberg, Germany</p>
-					        </section>
-						
-					        <section>
-					            <h3>Phone</h3>
-					            <p><a href="tel:+491772424010">+49 177 2424010</a></p>
-					        </section>
-						
-					        <section>
-					            <h3>Email</h3>
-					            <p><a href="mailto:andrei.blinov.3d@gmail.com">andrei.blinov.3d@gmail.com</a></p>
-					        </section>
-						
-					        <section>
-					            <h3>Social</h3>
-					            <ul class="icons alt">
-					                <li><a href="https://www.instagram.com/salimshady9/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-					                <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-					                <li><a href="https://t.me/andruha_svinoe_uho" class="icon brands alt fa-telegram"><span class="label">Telegram</span></a></li>
-					                <li><a href="https://github.com/1nn0c3ntt" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-					            </ul>
-					        </section>
-					    </section>
-					</footer>
+    .grid-wrapper {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      animation: tiltGrid 25s ease-in-out infinite alternate;
+    }
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Andrei Blinov</li><li>Design:Andrei Blinov</a></li></ul>
-					</div>
+    .animated-grid {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      /* Создаем текстуру сетки */
+      background-image:
+        linear-gradient(rgba(138, 136, 128, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(138, 136, 128, 0.25) 1px, transparent 1px);
+      background-size: 60px 60px;
+      /* Анимация бесконечного движения вперед */
+      animation: panGrid 6s linear infinite;
+      /* Плавное растворение краев в круг */
+      mask-image: radial-gradient(ellipse at center, black 10%, transparent 60%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 60%);
+    }
 
-			</div>
+    /* Вращаем саму плоскость в 3D */
+    @keyframes tiltGrid {
+      0% { transform: rotateX(65deg) rotateZ(10deg); }
+      100% { transform: rotateX(55deg) rotateZ(40deg); }
+    }
+    
+    /* Двигаем текстуру по плоскости */
+    @keyframes panGrid {
+      0% { background-position: 0 0; }
+      100% { background-position: 60px 60px; }
+    }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    /* Обертка текста поверх анимации */
+    .hero-text-content {
+      position: relative;
+      z-index: 2;
+    }
 
-	</body>
+    .hero-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.4rem;
+      display: block;
+    }
+    .about-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      margin-bottom: 1.5rem;
+    }
+    .about-hero h1 em {
+      font-style: italic;
+      color: var(--mid);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--black);
+      margin-bottom: 1rem;
+      max-width: 460px;
+      line-height: 1.6;
+    }
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.75;
+      max-width: 440px;
+      margin-bottom: 3rem;
+    }
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 4px;
+      transition: opacity 0.25s;
+    }
+    .cta-link:hover { opacity: 0.4; }
 
+    /* ПРАВАЯ ЧАСТЬ: ФОТОГРАФИЯ НА ВСЮ ВЫСОТУ */
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100vh; 
+      border-left: 1px solid var(--light);
+      background: #e4e2db;
+      overflow: hidden;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 100%;
+    }
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+      object-position: center top; /* Привязка к верху, лицо в кадре */
+      display: block;
+      transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-right:hover .about-image img {
+      transform: scale(1.02);
+    }
+
+    /* ── GENERAL SECTION HEADER ── */
+    .section-header {
+      padding: 4rem 3rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .section-header h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.01em;
+    }
+    .section-header span {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* ── EXPERIENCE SECTION ── */
+    .experience {
+      padding: 0 3rem 6rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 4rem;
+      padding: 3rem 0;
+      border-top: 1px solid var(--light);
+    }
+    .exp-item:last-child {
+      border-bottom: 1px solid var(--light);
+    }
+    .exp-date {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      padding-top: 0.5rem;
+    }
+    .exp-details h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 2rem;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+      line-height: 1.1;
+    }
+    .exp-details p {
+      font-size: 0.95rem;
+      color: var(--mid);
+      font-weight: 400;
+    }
+
+    /* ── TIMELINE / JOURNEY ── */
+    .journey {
+      padding: 0 3rem 6rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .journey-item {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1.5fr; 
+      gap: 4rem;
+      padding: 4.5rem 0;
+      border-top: 1px solid var(--light);
+    }
+    .journey-item:last-child {
+      border-bottom: 1px solid var(--light);
+    }
+    .j-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .j-meta span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .j-meta .j-loc {
+      color: var(--black);
+      font-weight: 500;
+    }
+    .j-content h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      color: var(--black);
+    }
+    .j-content p {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.8;
+      max-width: 480px;
+    }
+    .j-image {
+      background: #e4e2db;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+    }
+    .j-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .journey-item:hover .j-image img {
+      transform: scale(1.05);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--light);
+      padding: 3.5rem 3rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .footer-left { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-left p { font-size: 0.78rem; color: var(--mid); }
+    .footer-right { display: flex; gap: 2.5rem; }
+    .footer-right a {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-right a:hover { color: var(--black); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .journey-item { grid-template-columns: 1fr 1fr; gap: 3rem; }
+      .j-meta { grid-column: span 2; flex-direction: row; justify-content: space-between; border-bottom: 1px solid var(--light); padding-bottom: 1rem; margin-bottom: -1rem; }
+    }
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      
+      .about-hero { grid-template-columns: 1fr; height: auto; min-height: auto; padding: 0; }
+      
+      .hero-right { height: 60vh; order: -1; border-left: none; border-bottom: 1px solid var(--light); } 
+      .hero-left { padding: 4rem 1.5rem 4.5rem 1.5rem; }
+      
+      .bg-anim { left: 50%; top: 40%; width: 120vmin; height: 120vmin; }
+      
+      .section-header, .journey, .experience { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.8rem; padding: 2rem 0; }
+      .exp-date { padding-top: 0; }
+
+      .journey-item { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; }
+      .j-meta { grid-column: span 1; }
+      .j-image { aspect-ratio: 16/9; }
+      
+      footer { flex-direction: column; gap: 2rem; padding: 2.5rem 1.5rem 4rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Andrei Blinov</a>
+    <ul class="nav-links">
+      <li class="active"><a href="index.html">About</a></li>
+      <li><a href="visuals.html">Visuals</a></li>
+      <li><a href="motion.html">Motion</a></li>
+    </ul>
+    <ul class="nav-icons">
+      <li><a href="https://www.instagram.com/salimshady9/">Ig</a></li>
+      <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">Li</a></li>
+      <li><a href="https://t.me/andruha_svinoe_uho">Tg</a></li>
+    </ul>
+  </nav>
+
+  <!-- ABOUT HERO -->
+  <section class="about-hero">
+    
+    <!-- ЛЕВАЯ ЧАСТЬ: ТЕКСТ ВНИЗУ И АНИМАЦИЯ ПРАВЕЕ -->
+    <div class="hero-left reveal">
+      
+      <!-- ДИНАМИЧЕСКИЙ 3D GRID -->
+      <div class="bg-anim">
+        <div class="grid-wrapper">
+          <div class="animated-grid"></div>
+        </div>
+      </div>
+
+      <!-- Текстовый контент -->
+      <div class="hero-text-content">
+        <span class="hero-eyebrow">Profile</span>
+        <h1>Hi, I'm<br><em>Andrei Blinov.</em></h1>
+        
+        <p class="hero-sub">
+          I create 3D visuals and motion-driven stories.
+        </p>
+        
+        <p class="hero-desc">
+          Media Engineering student at TH Nürnberg with a Fine Arts foundation. Passionate about lighting, composition, and technical accuracy in 3D environments. Currently open for Werkstudent or Praktikum roles.
+        </p>
+        
+        <a href="files/Andrei_Blinov_CV.pdf" class="cta-link" download>Download CV (DE) →</a>
+      </div>
+    </div>
+
+    <!-- ПРАВАЯ ЧАСТЬ: ФОТОГРАФИЯ (ОТ ВЕРХА ДО НИЗА ЭКРАНА) -->
+    <div class="hero-right reveal">
+      <div class="about-image">
+        <img src="images/andrei.jpg" alt="Andrei Blinov" loading="lazy" />
+      </div>
+    </div>
+
+  </section>
+
+  <!-- EXPERIENCE HEADER -->
+  <div class="section-header reveal">
+    <h2>Experience</h2>
+    <span>Professional Background</span>
+  </div>
+
+  <!-- EXPERIENCE SECTION -->
+  <section class="experience">
+    
+    <div class="exp-item reveal">
+      <div class="exp-date">03.2026 — Present</div>
+      <div class="exp-details">
+        <h3>Barthelme LED Solutions</h3>
+        <p>3D Designer (Praktikant)</p>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">03.2025 — 09.2025</div>
+      <div class="exp-details">
+        <h3>Just Taste</h3>
+        <p>E-Commerce (Werkstudent)</p>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">06.2024 — 02.2025</div>
+      <div class="exp-details">
+        <h3>Aramark</h3>
+        <p>Koch (Werkstudent)</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- JOURNEY HEADER -->
+  <div class="section-header reveal">
+    <h2>My Journey</h2>
+    <span>2004 — Present</span>
+  </div>
+
+  <!-- JOURNEY TIMELINE -->
+  <section class="journey">
+
+    <div class="journey-item reveal">
+      <div class="j-meta">
+        <span class="j-loc">Nuremberg, DE</span>
+        <span>15.03.2024 – Present</span>
+      </div>
+      <div class="j-content">
+        <h3>Media Engineering:<br>TH Nürnberg</h3>
+        <p>Moved to Nuremberg for an Orientation Semester with an intensive focus on Blender and 3D fundamentals. Since 01.10.2024, I am officially a Media Engineering student at TH Nürnberg, combining tech & art.</p>
+      </div>
+      <div class="j-image">
+        <img src="images/ohm.jpg" alt="TH Nürnberg" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="journey-item reveal">
+      <div class="j-meta">
+        <span class="j-loc">Regensburg, DE</span>
+        <span>01.10.2023 – 15.03.2024</span>
+      </div>
+      <div class="j-content">
+        <h3>The Pivot: From<br>Architecture to 3D</h3>
+        <p>Started studying Architecture at OTH Regensburg, then shifted my focus toward 3D and visual design. I realized I am most motivated by lighting, composition, and storytelling through digital visuals.</p>
+      </div>
+      <div class="j-image">
+        <img src="images/regensburg.jpg" alt="Regensburg" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="journey-item reveal">
+      <div class="j-meta">
+        <span class="j-loc">Coburg, DE</span>
+        <span>21.09.2022 – 01.08.2023</span>
+      </div>
+      <div class="j-content">
+        <h3>The Move to Germany:<br>Studienkolleg</h3>
+        <p>Moved to Coburg to attend the Studienkolleg (T-Kurs) to prepare for my university studies in Germany. Successfully graduated with a final grade of 1.8.</p>
+      </div>
+      <div class="j-image">
+        <img src="images/coburg.jpg" alt="Coburg" loading="lazy" style="object-position: center top;" />
+      </div>
+    </div>
+
+    <div class="journey-item reveal">
+      <div class="j-meta">
+        <span class="j-loc">Barnaul, RU</span>
+        <span>10.08.2004 – 01.04.2022</span>
+      </div>
+      <div class="j-content">
+        <h3>The Foundation:<br>Art & Design</h3>
+        <p>Born in Barnaul, where I built my creative discipline. Completed an Ausbildung in Design. Graduated Art School No. 1 with a perfect 1.0 GPA (01.05.2021) and later graduated Lyceum 129, also with a 1.0 GPA (01.04.2022).</p>
+      </div>
+      <div class="j-image">
+        <img src="images/barnaul.jpg" alt="Barnaul" loading="lazy" />
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <a href="index.html" class="nav-logo">Andrei Blinov</a>
+      <p>3D Artist · Product &amp; Environment Visualization</p>
+    </div>
+    <div class="footer-right">
+      <a href="https://www.instagram.com/salimshady9/">Instagram</a>
+      <a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">LinkedIn</a>
+      <a href="https://t.me/andruha_svinoe_uho">Telegram</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal with stagger
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+</body>
 </html>
-
-
-
-
-
-
-

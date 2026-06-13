@@ -1,0 +1,563 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="images/icon.png">
+  <title>Barthelme Profiles | Andrei Blinov</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0e0e0e;
+      --off-white: #f7f6f3;
+      --mid: #8a8880;
+      --light: #d8d6d0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--off-white);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV (FROSTED GLASS) ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(247, 246, 243, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(216, 214, 208, 0.4);
+    }
+    nav * { pointer-events: auto; }
+
+    .nav-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links li.active a { color: var(--black); }
+    .nav-icons { display: flex; gap: 1.4rem; list-style: none; }
+    .nav-icons a { color: var(--mid); font-size: 0.78rem; text-decoration: none; transition: color 0.25s; font-weight: 400; letter-spacing: 0.05em; }
+    .nav-icons a:hover { color: var(--black); }
+
+    /* ── CASE STUDY HERO (FULLSCREEN EDITORIAL) ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      padding: 0 3rem 4.5rem;
+      gap: 4rem;
+      border-bottom: 1px solid var(--light);
+      overflow: hidden;
+    }
+
+    /* ── АНИМАЦИЯ: АРХИТЕКТУРНЫЙ ЧЕРТЕЖ ── */
+    .hero-abstract {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-abstract svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Вращение окружностей */
+    .arch-rotate {
+      transform-origin: 1000px 400px;
+      animation: slowSpin 150s linear infinite;
+    }
+    @keyframes slowSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Движение пунктирных линий (экструзия) */
+    .arch-lines {
+      stroke-dasharray: 8 16;
+      animation: dashMove 30s linear infinite;
+    }
+    @keyframes dashMove {
+      to { stroke-dashoffset: -1000; }
+    }
+
+    .hero-left {
+      padding-top: 9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--black); }
+
+    .hero-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.4rem;
+      display: block;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(4rem, 7vw, 7rem);
+      line-height: 0.93;
+      letter-spacing: -0.025em;
+      color: var(--black);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--mid);
+    }
+
+    .hero-right {
+      padding-top: 9rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 3.5rem;
+    }
+    .hero-stat { display: flex; flex-direction: column; gap: 0.3rem; }
+    .hero-stat strong {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1;
+    }
+    .hero-stat span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .hero-desc {
+      font-size: 0.92rem;
+      color: var(--mid);
+      line-height: 1.75;
+      max-width: 480px;
+    }
+
+    /* ── CATALOG GRID (СТРОГАЯ СЕТКА ДЛЯ ПАКОВ) ── */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding: 6rem 3rem 8rem;
+    }
+
+    .grid-item {
+      position: relative;
+      background: #e4e2db;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .grid-item:hover img { transform: scale(1.04); }
+
+    /* Hover Overlay */
+    .grid-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,10,0.3);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .grid-item:hover .overlay { opacity: 1; }
+    
+    .overlay-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transform: scale(0.8);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+    }
+    .grid-item:hover .overlay-icon { 
+      transform: scale(1); 
+      background: rgba(255, 255, 255, 0.1); 
+      backdrop-filter: blur(4px); 
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--light);
+      padding: 3.5rem 3rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .footer-left { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-left p { font-size: 0.78rem; color: var(--mid); }
+    .footer-right { display: flex; gap: 2.5rem; }
+    .footer-right a {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-right a:hover { color: var(--black); }
+
+    /* ── MODAL (ЧИСТАЯ, БЕЗ ИНФЫ) ── */
+    #imageModal {
+      position: fixed; inset: 0;
+      background: rgba(247,246,243,0.97);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    #imageModal.open { opacity: 1; pointer-events: auto; }
+    #modalImg {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+      transform: scale(0.96);
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    #imageModal.open #modalImg { transform: scale(1); }
+
+    .modal-close {
+      position: fixed;
+      top: 2rem; right: 2.5rem;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--black);
+      cursor: pointer;
+      background: none;
+      border: none;
+      opacity: 0.4;
+      transition: opacity 0.2s;
+    }
+    .modal-close:hover { opacity: 1; }
+
+    .modal-nav {
+      position: fixed;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.8rem;
+    }
+    .modal-nav button {
+      background: none;
+      border: 1px solid var(--light);
+      color: var(--black);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s;
+    }
+    .modal-nav button:hover {
+      background: var(--black);
+      color: var(--off-white);
+      border-color: var(--black);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; min-height: auto; gap: 2.5rem; }
+      .hero-left, .hero-right { padding-top: 0; }
+      .catalog-grid { grid-template-columns: repeat(2, 1fr); padding: 3rem 1.5rem 5rem; gap: 1rem; }
+      footer { flex-direction: column; gap: 2rem; padding: 2.5rem 1.5rem 4rem; }
+    }
+    @media (max-width: 500px) {
+      .catalog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Andrei Blinov</a>
+    <ul class="nav-links">
+      <li><a href="index.html">About</a></li>
+      <li class="active"><a href="visuals.html">Visuals</a></li>
+      <li><a href="motion.html">Motion</a></li>
+    </ul>
+    <ul class="nav-icons">
+      <li><a href="https://www.instagram.com/salimshady9/">Ig</a></li>
+      <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">Li</a></li>
+      <li><a href="https://t.me/andruha_svinoe_uho">Tg</a></li>
+    </ul>
+  </nav>
+
+  <!-- CASE STUDY HERO -->
+  <section class="hero">
+    
+    <!-- АНИМАЦИЯ (МИНИМАЛИСТИЧНЫЙ ЧЕРТЕЖ ПРОФИЛЯ) -->
+    <div class="hero-abstract">
+      <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="var(--mid)" fill="none" opacity="0.3">
+          
+          <!-- Круги как на референсе -->
+          <g class="arch-rotate">
+            <circle cx="1000" cy="400" r="350" stroke-width="0.5" stroke-dasharray="4 12" />
+            <circle cx="1000" cy="400" r="500" stroke-width="0.5" stroke-dasharray="1 6" opacity="0.6" />
+            <circle cx="1000" cy="400" r="700" stroke-width="0.25" />
+          </g>
+
+          <!-- Архитектурные линии экструзии LED-профиля -->
+          <line x1="-200" y1="200" x2="1600" y2="700" stroke-width="1" />
+          <line x1="-200" y1="230" x2="1600" y2="730" stroke-width="0.5" />
+          <line x1="-200" y1="280" x2="1600" y2="780" stroke-width="0.5" class="arch-lines" />
+          <line x1="-200" y1="310" x2="1600" y2="810" stroke-width="1" />
+          
+          <line x1="-100" y1="800" x2="1500" y2="-100" stroke-width="0.5" />
+          <line x1="200" y1="900" x2="1600" y2="100" stroke-width="0.5" opacity="0.5" />
+
+        </g>
+      </svg>
+    </div>
+
+    <div class="hero-left reveal">
+      <a href="visuals.html" class="back-link">← Back to Visuals</a>
+      <span class="hero-eyebrow">Commercial Production</span>
+      <h1>Barthelme<br><em>LED Profiles</em></h1>
+    </div>
+    <div class="hero-right reveal">
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>51</strong>
+          <span>Final<br>Renders</span>
+        </div>
+        <div class="hero-stat">
+          <strong>100%</strong>
+          <span>CAD<br>Accuracy</span>
+        </div>
+      </div>
+      <p class="hero-desc">A comprehensive professional case study consisting of 51 studio product renders delivered for the official Barthelme LED Solutions product catalog. Rendered with advanced material response and strict blueprint adherence.</p>
+    </div>
+  </section>
+
+  <!-- CATALOG GRID -->
+  <section class="catalog-grid">
+    <!-- SVG-иконка лупы вынесена в обертку для чистоты -->
+    <script>
+      const svgIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`;
+    </script>
+    
+    <div class="grid-item reveal" data-src="images/profile/photo_1_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_1_2026-06-13_12-04-11.jpg" alt="Profile Render 1" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_2_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_2_2026-06-13_12-04-11.jpg" alt="Profile Render 2" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_3_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_3_2026-06-13_12-04-11.jpg" alt="Profile Render 3" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_4_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_4_2026-06-13_12-04-11.jpg" alt="Profile Render 4" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_5_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_5_2026-06-13_12-04-11.jpg" alt="Profile Render 5" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_6_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_6_2026-06-13_12-04-11.jpg" alt="Profile Render 6" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_7_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_7_2026-06-13_12-04-11.jpg" alt="Profile Render 7" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_8_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_8_2026-06-13_12-04-11.jpg" alt="Profile Render 8" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_9_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_9_2026-06-13_12-04-11.jpg" alt="Profile Render 9" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_10_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_10_2026-06-13_12-04-11.jpg" alt="Profile Render 10" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_11_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_11_2026-06-13_12-04-11.jpg" alt="Profile Render 11" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_12_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_12_2026-06-13_12-04-11.jpg" alt="Profile Render 12" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_13_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_13_2026-06-13_12-04-11.jpg" alt="Profile Render 13" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_14_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_14_2026-06-13_12-04-11.jpg" alt="Profile Render 14" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_15_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_15_2026-06-13_12-04-11.jpg" alt="Profile Render 15" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_16_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_16_2026-06-13_12-04-11.jpg" alt="Profile Render 16" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_17_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_17_2026-06-13_12-04-11.jpg" alt="Profile Render 17" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_18_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_18_2026-06-13_12-04-11.jpg" alt="Profile Render 18" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_19_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_19_2026-06-13_12-04-11.jpg" alt="Profile Render 19" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_20_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_20_2026-06-13_12-04-11.jpg" alt="Profile Render 20" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_21_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_21_2026-06-13_12-04-11.jpg" alt="Profile Render 21" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_22_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_22_2026-06-13_12-04-11.jpg" alt="Profile Render 22" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_23_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_23_2026-06-13_12-04-11.jpg" alt="Profile Render 23" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_24_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_24_2026-06-13_12-04-11.jpg" alt="Profile Render 24" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_25_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_25_2026-06-13_12-04-11.jpg" alt="Profile Render 25" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_26_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_26_2026-06-13_12-04-11.jpg" alt="Profile Render 26" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_27_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_27_2026-06-13_12-04-11.jpg" alt="Profile Render 27" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_28_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_28_2026-06-13_12-04-11.jpg" alt="Profile Render 28" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_29_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_29_2026-06-13_12-04-11.jpg" alt="Profile Render 29" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_30_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_30_2026-06-13_12-04-11.jpg" alt="Profile Render 30" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_31_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_31_2026-06-13_12-04-11.jpg" alt="Profile Render 31" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_32_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_32_2026-06-13_12-04-11.jpg" alt="Profile Render 32" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_33_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_33_2026-06-13_12-04-11.jpg" alt="Profile Render 33" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_34_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_34_2026-06-13_12-04-11.jpg" alt="Profile Render 34" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_35_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_35_2026-06-13_12-04-11.jpg" alt="Profile Render 35" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_36_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_36_2026-06-13_12-04-11.jpg" alt="Profile Render 36" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_37_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_37_2026-06-13_12-04-11.jpg" alt="Profile Render 37" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_38_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_38_2026-06-13_12-04-11.jpg" alt="Profile Render 38" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_39_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_39_2026-06-13_12-04-11.jpg" alt="Profile Render 39" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_40_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_40_2026-06-13_12-04-11.jpg" alt="Profile Render 40" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_41_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_41_2026-06-13_12-04-11.jpg" alt="Profile Render 41" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_42_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_42_2026-06-13_12-04-11.jpg" alt="Profile Render 42" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_43_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_43_2026-06-13_12-04-11.jpg" alt="Profile Render 43" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_44_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_44_2026-06-13_12-04-11.jpg" alt="Profile Render 44" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_45_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_45_2026-06-13_12-04-11.jpg" alt="Profile Render 45" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_46_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_46_2026-06-13_12-04-11.jpg" alt="Profile Render 46" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_47_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_47_2026-06-13_12-04-11.jpg" alt="Profile Render 47" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_48_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_48_2026-06-13_12-04-11.jpg" alt="Profile Render 48" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_49_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_49_2026-06-13_12-04-11.jpg" alt="Profile Render 49" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_50_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_50_2026-06-13_12-04-11.jpg" alt="Profile Render 50" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+    <div class="grid-item reveal" data-src="images/profile/photo_51_2026-06-13_12-04-11.jpg"><img src="images/profile/photo_51_2026-06-13_12-04-11.jpg" alt="Profile Render 51" loading="lazy" /><div class="overlay"><div class="overlay-icon"><script>document.write(svgIcon)</script></div></div></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <a href="index.html" class="nav-logo">Andrei Blinov</a>
+      <p>3D Artist · Product &amp; Environment Visualization</p>
+    </div>
+    <div class="footer-right">
+      <a href="https://www.instagram.com/salimshady9/">Instagram</a>
+      <a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">LinkedIn</a>
+      <a href="https://t.me/andruha_svinoe_uho">Telegram</a>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div id="imageModal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <img id="modalImg" src="" alt="Project preview" />
+    
+    <div class="modal-nav">
+      <button id="modalPrev">← Prev</button>
+      <button id="modalNext">Next →</button>
+    </div>
+  </div>
+
+  <script>
+    // Scroll reveal logic
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 30);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.02 }); 
+    revealEls.forEach(el => io.observe(el));
+
+    // Modal logic
+    const items = Array.from(document.querySelectorAll('.grid-item[data-src]'));
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    let current = 0;
+
+    function openModal(index) {
+      current = index;
+      modalImg.src = items[index].dataset.src;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+      modal.classList.remove('open');
+      setTimeout(() => { if (!modal.classList.contains('open')) modalImg.src = ''; }, 500);
+      document.body.style.overflow = '';
+    }
+
+    items.forEach((el, i) => el.addEventListener('click', () => openModal(i)));
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.getElementById('modalPrev').addEventListener('click', e => {
+      e.stopPropagation();
+      openModal((current - 1 + items.length) % items.length);
+    });
+    document.getElementById('modalNext').addEventListener('click', e => {
+      e.stopPropagation();
+      openModal((current + 1) % items.length);
+    });
+    document.addEventListener('keydown', e => {
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') openModal((current - 1 + items.length) % items.length);
+      if (e.key === 'ArrowRight') openModal((current + 1) % items.length);
+    });
+  </script>
+</body>
+</html>
