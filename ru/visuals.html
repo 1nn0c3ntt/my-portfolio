@@ -311,24 +311,8 @@
       overflow: hidden;
       cursor: pointer;
       background: #e4e2db;
+      aspect-ratio: 4/3;
     }
-
-    .gallery-top .gallery-item:nth-child(1) { aspect-ratio: 4/3; }
-    .gallery-top .gallery-item:nth-child(2) { aspect-ratio: 4/3; margin-top: 6rem; }
-    
-    .gallery-top .gallery-item:nth-child(3) { 
-      grid-column: span 2; 
-      aspect-ratio: 1/1; 
-      width: 100%; 
-      max-width: 800px; 
-      margin: 4rem auto 0; 
-    }
-
-    .gallery-bot .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 21/9; }
-    .gallery-bot .gallery-item:nth-child(2) { aspect-ratio: 4/3; margin-top: 4rem; }
-    .gallery-bot .gallery-item:nth-child(3) { aspect-ratio: 4/3; }
-    .gallery-bot .gallery-item:nth-child(4) { aspect-ratio: 3/4; }
-    .gallery-bot .gallery-item:nth-child(5) { aspect-ratio: 3/4; margin-top: 6rem; }
 
     .gallery-item img {
       width: 100%;
@@ -380,6 +364,13 @@
       transition: color 0.4s 0.05s;
     }
     .gallery-item:hover .info-tools { color: rgba(255,255,255,0.45); }
+
+    /* Лесенка в боте: сдвигаем каждый второй элемент */
+    .gallery-bot .gallery-item:nth-child(3),
+    .gallery-bot .gallery-item:nth-child(5) { margin-top: 6rem; }
+
+    /* Специальные размеры */
+    .gallery-bot .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 21/9; }
 
     .featured {
       border-top: 1px solid var(--light);
@@ -455,21 +446,26 @@
       text-transform: uppercase;
       color: var(--mid);
     }
-    .cta-link {
+    
+    .cta-btn {
       display: inline-flex;
       align-items: center;
-      gap: 1rem;
-      font-size: 0.7rem;
+      justify-content: center;
+      padding: 0.8rem 2rem;
+      font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--black);
+      color: var(--off-white);
+      background-color: var(--black);
       text-decoration: none;
-      border-bottom: 1px solid var(--black);
-      padding-bottom: 4px;
-      transition: opacity 0.25s;
+      border: 1px solid var(--black);
+      transition: background-color 0.25s, color 0.25s;
     }
-    .cta-link:hover { opacity: 0.4; }
+    .cta-btn:hover {
+      background-color: transparent;
+      color: var(--black);
+    }
 
     footer {
       border-top: 1px solid var(--light);
@@ -593,80 +589,33 @@
 
     @media (max-width: 900px) {
       nav { padding: 1.2rem 1.5rem; }
-      
       .burger { display: flex; }
-
       .nav-menu {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: var(--off-white);
-        flex-direction: column;
-        justify-content: center;
-        gap: 3rem;
-        transform: translateY(-100%);
-        transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-        z-index: 200;
+        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        background: var(--off-white); flex-direction: column;
+        justify-content: center; gap: 3rem; transform: translateY(-100%);
+        transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0); z-index: 200;
       }
-
-      .nav-menu.open {
-        transform: translateY(0);
-      }
-
-      .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-      }
+      .nav-menu.open { transform: translateY(0); }
+      .nav-links { flex-direction: column; align-items: center; gap: 2rem; }
       .nav-links a { font-size: 1.4rem; }
-
-      .nav-controls {
-        flex-direction: column;
-        gap: 2rem;
-        margin-top: 1rem;
-      }
-
-      .nav-icons {
-        flex-direction: row;
-        justify-content: center;
-        gap: 2rem;
-      }
-      .nav-icons svg { 
-        width: 1.5rem; 
-        height: 1.5rem; 
-      }
-
-      .nav-langs {
-        margin-left: 0;
-        padding-left: 0;
-        border-left: none;
-        gap: 2rem;
-      }
+      .nav-controls { flex-direction: column; gap: 2rem; margin-top: 1rem; }
+      .nav-icons { flex-direction: row; justify-content: center; gap: 2rem; }
+      .nav-icons svg { width: 1.5rem; height: 1.5rem; }
+      .nav-langs { margin-left: 0; padding-left: 0; border-left: none; gap: 2rem; }
       .nav-langs a { font-size: 1.2rem; }
-
       .burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
       .burger.active span:nth-child(2) { opacity: 0; }
       .burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
+      
       .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; min-height: auto; gap: 2.5rem; }
       .hero-left, .hero-right { padding-top: 0; }
       .gallery { grid-template-columns: 1fr; padding-left: 1.5rem; padding-right: 1.5rem; gap: 2rem; }
-      
-      .gallery-top .gallery-item:nth-child(n),
-      .gallery-bot .gallery-item:nth-child(n) { grid-column: span 1 !important; margin-top: 0 !important; max-width: 100% !important; }
-      
-      .gallery-top .gallery-item:nth-child(1),
-      .gallery-top .gallery-item:nth-child(2),
-      .gallery-top .gallery-item:nth-child(3),
-      .gallery-bot .gallery-item:nth-child(2),
-      .gallery-bot .gallery-item:nth-child(3) { aspect-ratio: 1/1 !important; }
-
-      .gallery-bot .gallery-item:nth-child(1) { aspect-ratio: 16/9 !important; } 
-      
-      .gallery-bot .gallery-item:nth-child(4),
-      .gallery-bot .gallery-item:nth-child(5) { aspect-ratio: 3/4 !important; } 
+      .gallery-item { aspect-ratio: 1/1 !important; }
+      .gallery-bot .gallery-item:nth-child(1) { aspect-ratio: 16/9 !important; }
+      /* Сброс лесенки на мобилке */
+      .gallery-bot .gallery-item:nth-child(3), 
+      .gallery-bot .gallery-item:nth-child(5) { margin-top: 0 !important; }
       
       .featured { grid-template-columns: 1fr; margin: 0 1.5rem; gap: 2rem; padding: 3rem 0; }
       .feat-copy { position: static; }
@@ -679,13 +628,7 @@
 
   <nav>
     <a href="../index.html" class="nav-logo">Andrei Blinov</a>
-    
-    <div class="burger" id="burger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
     <div class="nav-menu" id="nav-menu">
       <ul class="nav-links">
         <li><a href="index.html">Обо мне</a></li>
@@ -694,32 +637,9 @@
       </ul>
       <div class="nav-controls">
         <ul class="nav-icons">
-          <li>
-            <a href="https://www.instagram.com/salimshady9/" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/andrei-blinov-38360b340/" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="https://t.me/andruha_svinoe_uho" aria-label="Telegram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-              </svg>
-            </a>
-          </li>
+          <li><a href="https://www.instagram.com/salimshady9/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a></li>
+          <li><a href="https://www.linkedin.com/in/andrei-blinov-38360b340/" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a></li>
+          <li><a href="https://t.me/andruha_svinoe_uho" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></a></li>
         </ul>
         <div class="nav-langs">
           <a href="../visuals.html">EN</a>
@@ -731,60 +651,30 @@
   </nav>
 
   <section class="hero">
-    
     <div class="hero-abstract">
       <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="vis-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="var(--mid)" stop-opacity="0" />
-            <stop offset="50%" stop-color="var(--mid)" stop-opacity="0.3" />
-            <stop offset="100%" stop-color="var(--mid)" stop-opacity="0" />
-          </linearGradient>
-        </defs>
-        
+        <defs><linearGradient id="vis-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="var(--mid)" stop-opacity="0" /><stop offset="50%" stop-color="var(--mid)" stop-opacity="0.3" /><stop offset="100%" stop-color="var(--mid)" stop-opacity="0" /></linearGradient></defs>
         <g fill="none" stroke="url(#vis-grad)" stroke-width="1">
           <g class="arch-group-1">
-            <line x1="-200" y1="100" x2="1600" y2="700" class="arch-line" />
-            <line x1="-200" y1="130" x2="1600" y2="730" class="arch-line reverse" />
-            <line x1="-200" y1="160" x2="1600" y2="760" class="arch-line" />
-            
-            <line x1="800" y1="-200" x2="1100" y2="1000" class="arch-line" />
-            <line x1="830" y1="-200" x2="1130" y2="1000" class="arch-line reverse" />
+            <line x1="-200" y1="100" x2="1600" y2="700" class="arch-line" /><line x1="-200" y1="130" x2="1600" y2="730" class="arch-line reverse" /><line x1="-200" y1="160" x2="1600" y2="760" class="arch-line" /><line x1="800" y1="-200" x2="1100" y2="1000" class="arch-line" /><line x1="830" y1="-200" x2="1130" y2="1000" class="arch-line reverse" />
           </g>
-          
           <g class="arch-group-2">
-            <line x1="1600" y1="-100" x2="-200" y2="800" class="arch-line" />
-            <line x1="1600" y1="-70" x2="-200" y2="830" class="arch-line reverse" />
-            
-            <circle cx="1050" cy="400" r="250" class="arch-circle" stroke-dasharray="4 8" />
-            <circle cx="1050" cy="400" r="380" class="arch-circle reverse" stroke-dasharray="1 5" stroke-width="1.5" />
-            <circle cx="1050" cy="400" r="420" stroke-opacity="0.1" />
-            
-            <line x1="550" y1="400" x2="1550" y2="400" class="arch-line" stroke-dasharray="2 4" stroke-width="0.5" />
-            <line x1="1050" y1="-100" x2="1050" y2="900" class="arch-line reverse" stroke-dasharray="2 4" stroke-width="0.5" />
+            <line x1="1600" y1="-100" x2="-200" y2="800" class="arch-line" /><line x1="1600" y1="-70" x2="-200" y2="830" class="arch-line reverse" />
+            <circle cx="1050" cy="400" r="250" class="arch-circle" stroke-dasharray="4 8" /><circle cx="1050" cy="400" r="380" class="arch-circle reverse" stroke-dasharray="1 5" stroke-width="1.5" /><circle cx="1050" cy="400" r="420" stroke-opacity="0.1" />
+            <line x1="550" y1="400" x2="1550" y2="400" class="arch-line" stroke-dasharray="2 4" stroke-width="0.5" /><line x1="1050" y1="-100" x2="1050" y2="900" class="arch-line reverse" stroke-dasharray="2 4" stroke-width="0.5" />
           </g>
         </g>
       </svg>
     </div>
-
     <div class="hero-left reveal">
       <span class="hero-eyebrow">3D · CGI · Визуализация</span>
       <h1>Визуальные<br><em>Работы</em></h1>
     </div>
     <div class="hero-right reveal">
       <div class="hero-stats">
-        <div class="hero-stat">
-          <strong>50+</strong>
-          <span>Коммерческих<br>рендеров</span>
-        </div>
-        <div class="hero-stat">
-          <strong>100%</strong>
-          <span>Техническая<br>точность</span>
-        </div>
-        <div class="hero-stat">
-          <strong>3+</strong>
-          <span>Года в<br>3D</span>
-        </div>
+        <div class="hero-stat"><strong>50+</strong><span>Коммерческих<br>рендеров</span></div>
+        <div class="hero-stat"><strong>100%</strong><span>Техническая<br>точность</span></div>
+        <div class="hero-stat"><strong>3+</strong><span>Года в<br>3D</span></div>
       </div>
       <p class="hero-desc">Рендеры продуктов, концепты окружения и архитектурные визуализации — полностью созданные в 3D. Открыт к коммерческим проектам.</p>
       <div class="hero-contact">
@@ -795,41 +685,15 @@
   </section>
 
   <section class="gallery gallery-top">
-
-    <div class="gallery-item reveal" data-src="../images/led_Streifen_Icon.png" data-cat="Продуктовая визуализация" data-title="Гибкая LED лента" data-tools="Blender">
-      <img src="../images/led_Streifen_Icon.png" alt="Flexible LED Strip Solution" loading="lazy" />
-      <div class="info">
-        <div class="info-meta">Продуктовая визуализация</div>
-        <div class="info-title">Гибкая LED<br>лента <br> для Barthrlme LED Solutions</div>
-        <div class="info-tools">Blender</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" data-src="../images/castle.png" data-cat="Дизайн окружения" data-title="Витраж средневекового замка" data-tools="Blender">
-      <img src="../images/castle.png" alt="Medieval Castle Stained Glass" loading="lazy" />
-      <div class="info">
-        <div class="info-meta">Дизайн окружения</div>
-        <div class="info-title">Витраж средневекового<br>замка</div>
-        <div class="info-tools">Blender</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" data-src="../images/car.png" data-cat="Концепт-арт · 3D Визуал" data-title="Космическое шоссе In-N-Out" data-tools="Blender · Photoshop">
-      <img src="../images/car.png" alt="In-N-Out Space Highway" loading="lazy" />
-      <div class="info">
-        <div class="info-meta">Концепт-арт · 3D Визуал</div>
-        <div class="info-title">Космическое шоссе<br>In-N-Out</div>
-        <div class="info-tools">Blender · Photoshop</div>
-      </div>
-    </div>
-
+    <div class="gallery-item reveal" data-src="../images/led_Streifen_Icon.png" data-cat="Продуктовая визуализация" data-title="Гибкая LED лента" data-tools="Blender"><img src="../images/led_Streifen_Icon.png" alt="Flexible LED Strip Solution" loading="lazy" /><div class="info"><div class="info-meta">Продуктовая визуализация</div><div class="info-title">Гибкая LED<br>лента <br> для Barthrlme LED Solutions</div><div class="info-tools">Blender</div></div></div>
+    <div class="gallery-item reveal" data-src="../images/castle.png" data-cat="Дизайн окружения" data-title="Витраж средневекового замка" data-tools="Blender"><img src="../images/castle.png" alt="Medieval Castle Stained Glass" loading="lazy" /><div class="info"><div class="info-meta">Дизайн окружения</div><div class="info-title">Витраж средневекового<br>замка</div><div class="info-tools">Blender</div></div></div>
   </section>
 
   <div class="featured reveal">
     <div class="feat-images">
       <img src="../images/profile/photo_1_2026-06-13_12-04-11.jpg" alt="Barthelme LED Profiles hero" loading="lazy" />
-      <img src="../images/profile/photo_1_2026-06-13_12-04-11.jpg" alt="Barthelme detail 1" loading="lazy" />
-      <img src="../images/profile/photo_1_2026-06-13_12-04-11.jpg" alt="Barthelme detail 2" loading="lazy" />
+      <img src="../images/profile/photo_8_2026-06-13_12-04-11.jpg" alt="Barthelme detail 1" loading="lazy" />
+      <img src="../images/profile/photo_34_2026-06-13_12-04-11.jpg" alt="Barthelme detail 2" loading="lazy" />
     </div>
     <div class="feat-copy">
       <span class="feat-eyebrow">Избранный кейс · CGI Пак</span>
@@ -840,57 +704,17 @@
         <div><strong>2</strong><span>Инструмента<br>использовано</span></div>
         <div><strong>1</strong><span>Довольный<br>клиент</span></div>
       </div>
-      <a href="profiles-gallery.html" class="cta-link">Смотреть весь пак →</a>
+      <a href="profiles-gallery.html" class="cta-btn">К проекту</a>
     </div>
   </div>
 
   <section class="gallery gallery-bot">
-
-    <div class="gallery-item reveal" data-src="../images/Miami.png" data-cat="Дизайн окружения" data-title="Ретро-сцена Майами" data-tools="Blender · Photoshop">
-      <img src="../images/Miami.png" alt="Miami Retro Scene" loading="lazy" />
-      <div class="info">
-        <div class="info-meta">Дизайн окружения</div>
-        <div class="info-title">Ретро-сцена<br>Майами</div>
-        <div class="info-tools">Blender · Photoshop</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" data-src="../images/charger.jpg" data-cat="Продуктовая визуализация" data-title="Зарядное устройство GreenHec" data-tools="Blender · Photoshop">
-      <img src="../images/charger.jpg" alt="GreenHec Charger Bundle" loading="lazy" />
-      <div class="info">
-        <div class="info-meta">Продуктовая визуализация</div>
-        <div class="info-title">Зарядное устройство<br>GreenHec</div>
-        <div class="info-tools">Blender · Photoshop</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" data-src="../images/village.png" data-cat="3D Иллюстрация" data-title="Стилизованная деревня" data-tools="Blender">
-      <img src="../images/village.png" alt="Stylized Village Scene" loading="lazy" />
-      <div class="info">
-        <div class="info-meta">3D Иллюстрация</div>
-        <div class="info-title">Стилизованная<br>деревня</div>
-        <div class="info-tools">Blender</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" data-src="../images/villa.jpg" data-cat="Архитектурный концепт" data-title="Современная вилла" data-tools="Blender">
-      <img src="../images/villa.jpg" alt="Modern Villa Space" loading="lazy" />
-      <div class="info">
-        <div class="info-meta">Архитектурный концепт</div>
-        <div class="info-title">Современная<br>вилла</div>
-        <div class="info-tools">Blender</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" data-src="../images/building.jpg" data-cat="Визуальное искусство · CGI" data-title="Городской кондиционер" data-tools="Blender · Photoshop">
-      <img src="../images/building.jpg" alt="Urban Conditioning" loading="lazy" />
-      <div class="info">
-        <div class="info-meta">Визуальное искусство · CGI</div>
-        <div class="info-title">Городской<br>кондиционер</div>
-        <div class="info-tools">Blender · Photoshop</div>
-      </div>
-    </div>
-
+    <div class="gallery-item reveal" data-src="../images/Miami.png" data-cat="Дизайн окружения" data-title="Ретро-сцена Майами" data-tools="Blender · Photoshop"><img src="../images/Miami.png" alt="Miami Retro Scene" loading="lazy" /><div class="info"><div class="info-meta">Дизайн окружения</div><div class="info-title">Ретро-сцена<br>Майами</div><div class="info-tools">Blender · Photoshop</div></div></div>
+    <div class="gallery-item reveal" data-src="../images/car.png" data-cat="Концепт-арт · 3D Визуал" data-title="Космическое шоссе In-N-Out" data-tools="Blender · Photoshop"><img src="../images/car.png" alt="In-N-Out Space Highway" loading="lazy" /><div class="info"><div class="info-meta">Концепт-арт · 3D Визуал</div><div class="info-title">Космическое шоссе<br>In-N-Out</div><div class="info-tools">Blender · Photoshop</div></div></div>
+    <div class="gallery-item reveal" data-src="../images/charger.jpg" data-cat="Продуктовая визуализация" data-title="Зарядное устройство GreenHec" data-tools="Blender · Photoshop"><img src="../images/charger.jpg" alt="GreenHec Charger Bundle" loading="lazy" /><div class="info"><div class="info-meta">Продуктовая визуализация</div><div class="info-title">Зарядное устройство<br>GreenHec</div><div class="info-tools">Blender · Photoshop</div></div></div>
+    <div class="gallery-item reveal" data-src="../images/village.png" data-cat="3D Иллюстрация" data-title="Стилизованная деревня" data-tools="Blender"><img src="../images/village.png" alt="Stylized Village Scene" loading="lazy" /><div class="info"><div class="info-meta">3D Иллюстрация</div><div class="info-title">Стилизованная<br>деревня</div><div class="info-tools">Blender</div></div></div>
+    <div class="gallery-item reveal" data-src="../images/villa.jpg" data-cat="Архитектурный концепт" data-title="Современная вилла" data-tools="Blender"><img src="../images/villa.jpg" alt="Modern Villa Space" loading="lazy" /><div class="info"><div class="info-meta">Архитектурный концепт</div><div class="info-title">Современная<br>вилла</div><div class="info-tools">Blender</div></div></div>
+    <div class="gallery-item reveal" data-src="../images/building.jpg" data-cat="Визуальное искусство · CGI" data-title="Городской кондиционер" data-tools="Blender · Photoshop"><img src="../images/building.jpg" alt="Urban Conditioning" loading="lazy" /><div class="info"><div class="info-meta">Визуальное искусство · CGI</div><div class="info-title">Городской<br>кондиционер</div><div class="info-tools">Blender · Photoshop</div></div></div>
   </section>
 
   <footer>
@@ -908,17 +732,8 @@
   <div id="imageModal" role="dialog" aria-modal="true">
     <button class="modal-close" id="modalClose">&times;</button>
     <img id="modalImg" src="" alt="Project preview" />
-    
-    <div class="modal-info">
-      <div class="modal-info-cat" id="modalCat"></div>
-      <div class="modal-info-title" id="modalTitle"></div>
-      <div class="modal-info-tools" id="modalTools"></div>
-    </div>
-
-    <div class="modal-nav">
-      <button id="modalPrev">← Назад</button>
-      <button id="modalNext">Вперед →</button>
-    </div>
+    <div class="modal-info"><div class="modal-info-cat" id="modalCat"></div><div class="modal-info-title" id="modalTitle"></div><div class="modal-info-tools" id="modalTools"></div></div>
+    <div class="modal-nav"><button id="modalPrev">← Назад</button><button id="modalNext">Вперед →</button></div>
   </div>
 
   <script>
@@ -948,7 +763,6 @@
       modalCat.textContent = el.dataset.cat || '';
       modalTitle.textContent = el.dataset.title || '';
       modalTools.textContent = el.dataset.tools || '';
-      
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -962,14 +776,8 @@
     items.forEach((el, i) => el.addEventListener('click', () => openModal(i)));
     document.getElementById('modalClose').addEventListener('click', closeModal);
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.getElementById('modalPrev').addEventListener('click', e => {
-      e.stopPropagation();
-      openModal((current - 1 + items.length) % items.length);
-    });
-    document.getElementById('modalNext').addEventListener('click', e => {
-      e.stopPropagation();
-      openModal((current + 1) % items.length);
-    });
+    document.getElementById('modalPrev').addEventListener('click', e => { e.stopPropagation(); openModal((current - 1 + items.length) % items.length); });
+    document.getElementById('modalNext').addEventListener('click', e => { e.stopPropagation(); openModal((current + 1) % items.length); });
     document.addEventListener('keydown', e => {
       if (!modal.classList.contains('open')) return;
       if (e.key === 'Escape') closeModal();
@@ -979,7 +787,6 @@
 
     const burger = document.getElementById('burger');
     const navMenu = document.getElementById('nav-menu');
-
     burger.addEventListener('click', () => {
       burger.classList.toggle('active');
       navMenu.classList.toggle('open');
