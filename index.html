@@ -243,8 +243,38 @@
       color: var(--mid);
       line-height: 1.75;
       max-width: 440px;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
+
+    /* Блок для кнопок действий */
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+  
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 2rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      background-color: var(--black);
+      text-decoration: none;
+      border: 1px solid var(--black);
+      transition: background-color 0.25s, color 0.25s;
+    }
+    .cta-btn:hover {
+      background-color: transparent;
+      color: var(--black);
+    }
+
     .cta-link {
       display: inline-flex;
       align-items: center;
@@ -500,6 +530,9 @@
       
       .bg-anim { left: 50%; top: 40%; width: 120vmin; height: 120vmin; }
       
+      .hero-actions { gap: 1.5rem; flex-direction: column; align-items: flex-start; width: 100%; }
+      .cta-btn { width: 100%; max-width: 320px; }
+
       .section-header, .journey, .experience { padding-left: 1.5rem; padding-right: 1.5rem; }
       .exp-item { grid-template-columns: 1fr; gap: 0.8rem; padding: 2rem 0; }
       .exp-date { padding-top: 0; }
@@ -590,7 +623,10 @@
           Media Engineering student at TH Nürnberg with a Fine Arts foundation. Passionate about lighting, composition, and technical accuracy in 3D environments. Currently open for Werkstudent or Praktikum roles.
         </p>
         
-        <a href="files/Andrei_Blinov_CV.pdf" class="cta-link" download>Download CV (DE) →</a>
+        <div class="hero-actions">
+          <a href="visuals.html" class="cta-btn">View Portfolio</a>
+          <a href="files/Andrei_Blinov_CV.pdf" class="cta-link" download>Download CV (DE) →</a>
+        </div>
       </div>
     </div>
 
