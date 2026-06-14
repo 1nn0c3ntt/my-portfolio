@@ -610,10 +610,15 @@
       
       .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; min-height: auto; gap: 2.5rem; }
       .hero-left, .hero-right { padding-top: 0; }
+      
       .gallery { grid-template-columns: 1fr; padding-left: 1.5rem; padding-right: 1.5rem; gap: 2rem; }
       .gallery-item { aspect-ratio: 1/1 !important; }
-      .gallery-bot .gallery-item:nth-child(1) { aspect-ratio: 16/9 !important; }
-      /* Сброс лесенки на мобилке */
+      
+      .gallery-bot .gallery-item:nth-child(1) { 
+        grid-column: span 1; 
+        aspect-ratio: 16/9 !important; 
+      }
+      
       .gallery-bot .gallery-item:nth-child(3), 
       .gallery-bot .gallery-item:nth-child(5) { margin-top: 0 !important; }
       
@@ -763,7 +768,7 @@
       modalCat.textContent = el.dataset.cat || '';
       modalTitle.textContent = el.dataset.title || '';
       modalTools.textContent = el.dataset.tools || '';
-      modal.classList.add('open');
+      modal.classList.add('open');""
       document.body.style.overflow = 'hidden';
     }
     
