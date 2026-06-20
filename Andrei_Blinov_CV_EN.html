@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Andrei Blinov — CV</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
+
+    :root {
+      --black: #0e0e0e;
+      --off-white: #f7f6f3;
+      --mid: #8a8880;
+      --light: #d8d6d0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      background: #444;
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    @media print {
+      body {
+        background: var(--off-white);
+        padding: 0;
+        display: block;
+      }
+      .page {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        box-shadow: none;
+        padding: 14mm 16mm;
+      }
+      .bg-anim, #download-btn-container {
+        display: none !important;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--off-white);
+      padding: 14mm 16mm 14mm;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.28);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bg-anim {
+      position: absolute;
+      top: -150px;
+      right: -150px;
+      width: 500px;
+      height: 500px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+      mask-image: radial-gradient(circle at 70% 30%, black 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(circle at 70% 30%, black 20%, transparent 75%);
+    }
+
+    .bg-anim svg {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    .spin-slow {
+      transform-origin: 100px 100px;
+      animation: vectorRotate 25s linear infinite;
+    }
+
+    .spin-reverse {
+      transform-origin: 100px 100px;
+      animation: vectorRotateReverse 30s linear infinite;
+    }
+
+    .pulse-slow {
+      transform-origin: 100px 100px;
+      animation: vectorPulse 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes vectorRotate {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes vectorRotateReverse {
+      0%   { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @keyframes vectorPulse {
+      0%   { transform: scale(0.92) translate(0px, 0px); }
+      100% { transform: scale(1.08) translate(5px, -5px); }
+    }
+
+    header, .cv-body { position: relative; z-index: 1; }
+
+    header {
+      padding-bottom: 1.6rem;
+      border-bottom: 1px solid var(--light);
+      margin-bottom: 2.2rem;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.6rem;
+    }
+
+    .header-top h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 3.4rem;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--black);
+    }
+
+    .header-top h1 em {
+      font-style: italic;
+      color: var(--mid);
+    }
+
+    .header-meta {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+
+    .header-meta .eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .portfolio-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      background-color: var(--black);
+      text-decoration: none;
+      border: 1px solid var(--black);
+    }
+
+    .header-contacts {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contact-items {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .contact-items li {
+      display: flex;
+      align-items: center;
+      font-size: 0.72rem;
+      color: var(--mid);
+      letter-spacing: 0.02em;
+    }
+
+    .contact-items li a {
+      color: var(--mid);
+      text-decoration: none;
+    }
+
+    .contact-items li a:hover {
+      color: var(--black);
+    }
+
+    .location-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .cv-body {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      flex: 1;
+    }
+
+    .sec-label {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+
+    .sec-label h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.55rem;
+      color: var(--black);
+      letter-spacing: -0.01em;
+    }
+
+    .sec-label span {
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .info-block h3 {
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.9rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--light);
+    }
+
+    .info-block h3.no-border {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .info-block p {
+      font-size: 0.8rem;
+      color: var(--black);
+      line-height: 1.72;
+      font-weight: 300;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .skill-list li {
+      font-size: 0.8rem;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+    }
+
+    .skill-list.bullets li {
+      padding-left: 0.9rem;
+      position: relative;
+    }
+
+    .skill-list.bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--light);
+      font-size: 0.7rem;
+    }
+
+    .skill-list.lang li {
+      justify-content: space-between;
+    }
+
+    .lang-level {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .right-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 1.3rem 0;
+      border-top: 1px solid var(--light);
+    }
+
+    .entry:last-of-type {
+      border-bottom: 1px solid var(--light);
+    }
+
+    .entry-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.3rem;
+    }
+
+    .entry-date {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .entry-loc {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--light);
+    }
+
+    .entry h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 1.28rem;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: 0.2rem;
+    }
+
+    .entry .role {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--mid);
+      margin-bottom: 0.65rem;
+      letter-spacing: 0.04em;
+    }
+
+    .entry ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.28rem;
+    }
+
+    .entry ul li {
+      font-size: 0.78rem;
+      color: var(--mid);
+      line-height: 1.6;
+      padding-left: 0.9rem;
+      position: relative;
+    }
+
+    .entry ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--light);
+      font-size: 0.7rem;
+    }
+
+    .entry.edu h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.92rem;
+      letter-spacing: 0.01em;
+    }
+
+    .entry.edu .role {
+      margin-bottom: 0;
+    }
+
+    .section-gap { margin-top: 1.6rem; }
+
+    .cv-footer {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cv-footer .logo {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .cv-footer .tagline {
+      font-size: 0.65rem;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+    }
+
+    #download-btn-container {
+      width: 210mm;
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      background-color: transparent;
+      border: 1px solid var(--mid);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .download-btn:hover {
+      color: var(--off-white);
+      background-color: var(--black);
+      border-color: var(--black);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="bg-anim" id="cv-bg-svg">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="100" y1="10" x2="100" y2="190" stroke="#8a8880" stroke-width="0.2" stroke-dasharray="2 4" />
+        <line x1="10" y1="100" x2="190" y2="100" stroke="#8a8880" stroke-width="0.2" stroke-dasharray="2 4" />
+
+        <g class="spin-slow">
+          <path d="M100,25 C145,20 185,65 175,115 C165,165 125,180 90,170 C55,160 25,125 30,85 C35,45 55,30 100,25 Z" 
+                fill="none" stroke="#8a8880" stroke-width="0.35" />
+        </g>
+
+        <g class="spin-reverse">
+          <path d="M110,40 C150,30 170,80 160,125 C150,170 105,165 75,155 C45,145 35,95 45,65 C55,35 70,50 110,40 Z" 
+                fill="none" stroke="#8a8880" stroke-width="0.25" stroke-dasharray="1 2" />
+        </g>
+
+        <g class="pulse-slow">
+          <path d="M100,60 C125,55 145,75 135,105 C125,135 115,145 90,135 C65,125 55,100 65,80 C75,60 75,65 100,60 Z" 
+                fill="none" stroke="#8a8880" stroke-width="0.3" />
+          <circle cx="100" cy="100" r="3" fill="#8a8880" />
+        </g>
+      </svg>
+    </div>
+
+    <header>
+      <div class="header-top">
+        <h1>Andrei<br><em>Blinov</em></h1>
+        <div class="header-meta">
+          <span class="eyebrow">3D-Designer &middot; Media Engineering</span>
+          <a href="https://1nn0c3ntt.github.io/my-portfolio/visuals.html" class="portfolio-cta">View Portfolio →</a>
+        </div>
+      </div>
+      <div class="header-contacts">
+        <ul class="contact-items">
+          <li>
+            <a href="mailto:andrei.blinov.3d@gmail.com">andrei.blinov.3d@gmail.com</a>
+          </li>
+          <li>
+            +49 177 2424010
+          </li>
+          <li>
+            <a href="https://linkedin.com/in/andrei-blinov-38360b340">LinkedIn</a>
+          </li>
+          <li>
+            <a href="https://t.me/andruha_svinoe_uho">Telegram</a>
+          </li>
+        </ul>
+        <span class="location-tag">Nuremberg, DE</span>
+      </div>
+    </header>
+
+    <div class="cv-body">
+
+      <div class="left-col">
+
+        <div class="info-block">
+          <h3 class="no-border">Profile</h3>
+          <p>3D Designer with over 3 years of experience in product visualization. Specialized in lighting, retopology, and creating hand-painted and custom textures. Experienced in CAD data preparation for Blender and post-production.</p>
+        </div>
+
+        <div class="info-block">
+          <h3>Software</h3>
+          <ul class="skill-list bullets">
+            <li>Blender</li>
+            <li>Adobe Photoshop</li>
+            <li>Adobe Illustrator</li>
+            <li>Premiere Pro</li>
+            <li>After Effects</li>
+            <li>Procreate</li>
+          </ul>
+        </div>
+
+        <div class="info-block">
+          <h3>Skills</h3>
+          <ul class="skill-list bullets">
+            <li>3D Modeling</li>
+            <li>Rendering &amp; Lighting</li>
+            <li>Product Visualization</li>
+            <li>Architectural Visualization</li>
+            <li>Motion Design</li>
+            <li>UV-Mapping &amp; Texturing</li>
+          </ul>
+        </div>
+
+        <div class="info-block">
+          <h3>Languages</h3>
+          <ul class="skill-list lang">
+            <li>Russian <span class="lang-level">Native</span></li>
+            <li>German <span class="lang-level">C1</span></li>
+            <li>English <span class="lang-level">C1</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="right-col">
+
+        <div class="sec-label">
+          <h2>Experience</h2>
+          <span>Professional Background</span>
+        </div>
+
+        <div class="entry">
+          <div class="entry-meta">
+            <span class="entry-date">03.2026 — Present</span>
+            <span class="entry-loc">Nuremberg, DE</span>
+          </div>
+          <h3>Barthelme LED Solutions</h3>
+          <div class="role">3D Designer (Intern)</div>
+          <ul>
+            <li>Responsible as the sole 3D designer for creating photorealistic product renderings and 3D animations for the official website and marketing materials.</li>
+            <li>Independent CAD data preparation, optimization, and conversion of complex technical data for further processing in Blender.</li>
+            <li>Reconstruction and 3D modeling of products based on photos or real objects when technical drawings were unavailable.</li>
+            <li>Development, staging, and optimization of complex lighting scenarios.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-meta">
+            <span class="entry-date">03.2025 — 09.2025</span>
+            <span class="entry-loc">Schwabach, DE</span>
+          </div>
+          <h3>Just Taste</h3>
+          <div class="role">E-Commerce (Working Student)</div>
+          <ul>
+            <li>Maintenance and optimization of the online shop as well as product image editing.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-meta">
+            <span class="entry-date">06.2024 — 02.2025</span>
+            <span class="entry-loc">Nuremberg, DE</span>
+          </div>
+          <h3>Aramark</h3>
+          <div class="role">Cook (Working Student)</div>
+          <ul>
+            <li>Reliable cooperation parallel to university studies.</li>
+          </ul>
+        </div>
+
+        <div class="section-gap">
+          <div class="sec-label">
+            <h2>Education</h2>
+            <span>Educational Journey</span>
+          </div>
+        </div>
+
+        <div class="entry edu">
+          <div class="entry-meta">
+            <span class="entry-date">10.2024 — Present</span>
+            <span class="entry-loc">Nuremberg, DE</span>
+          </div>
+          <h3>Media Engineering (B.Eng.)</h3>
+          <div class="role">TH Nürnberg · Specialization: 3D, Interactive Media</div>
+        </div>
+
+        <div class="entry edu">
+          <div class="entry-meta">
+            <span class="entry-date">03.2024 — 09.2024</span>
+            <span class="entry-loc">Nuremberg, DE</span>
+          </div>
+          <h3>Orientation Semester</h3>
+          <div class="role">TH Nürnberg · Intensive course Blender &amp; 3D Fundamentals</div>
+        </div>
+
+        <div class="entry edu">
+          <div class="entry-meta">
+            <span class="entry-date">10.2023 — 03.2024</span>
+            <span class="entry-loc">Regensburg, DE</span>
+          </div>
+          <h3>Architecture (B.Sc., transferred)</h3>
+          <div class="role">OTH Regensburg · Foundation for spatial design and composition</div>
+        </div>
+
+        <div class="entry edu">
+          <div class="entry-meta">
+            <span class="entry-date">09.2022 — 08.2023</span>
+            <span class="entry-loc">Coburg, DE</span>
+          </div>
+          <h3>Studienkolleg (T-Course)</h3>
+          <div class="role">Final Grade: 1.8</div>
+        </div>
+
+        <div class="entry edu">
+          <div class="entry-meta">
+            <span class="entry-date">until 2022</span>
+            <span class="entry-loc">Barnaul, RU</span>
+          </div>
+          <h3>Art School (Design Major) &amp; Lyceum</h3>
+          <div class="role">Art School No. 1 (Grade: 1.0) · Lyceum 129 (Grade: 1.0)</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cv-footer">
+      <a href="https://1nn0c3ntt.github.io/my-portfolio/visuals.html" class="logo">Andrei Blinov</a>
+      <span class="tagline">3D Artist &middot; Product &amp; Environment Visualization</span>
+    </div>
+
+  </div>
+
+  <div id="download-btn-container">
+    <a class="download-btn" href="CV/Andei_Blinov_CV_ENG.pdf" download="Andrei_Blinov_CV_EN.pdf">Download PDF</a>
+  </div>
+</body>
+</html>
