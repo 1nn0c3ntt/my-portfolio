@@ -4,7 +4,14 @@
   <link rel="icon" type="image/png" href="images/icon.png">
   <title>About | Andrei Blinov</title>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Andrei Blinov, 3D artist from Nuremberg. Product renders from CAD data, LED lighting products, animation and personal environment projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About | Andrei Blinov" />
+  <meta property="og:description" content="Andrei Blinov, 3D artist from Nuremberg. Product renders from CAD data, LED lighting products, animation and personal environment projects." />
+  <meta property="og:image" content="https://1nn0c3ntt.github.io/my-portfolio/images/web/og-cover.jpg" />
+  <meta property="og:url" content="https://1nn0c3ntt.github.io/my-portfolio/index.html" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
@@ -373,9 +380,6 @@
       display: block;
       transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .hero-right:hover .about-image img {
-      transform: scale(1.02);
-    }
 
     .section-header {
       padding: 4rem 3rem 2rem;
@@ -430,6 +434,12 @@
       font-size: 0.95rem;
       color: var(--mid);
       font-weight: 400;
+    }
+    .exp-details p.exp-note {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      max-width: 560px;
     }
 
     .journey {
@@ -487,9 +497,6 @@
       object-fit: cover;
       display: block;
       transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .journey-item:hover .j-image img {
-      transform: scale(1.05);
     }
 
     footer {
@@ -697,7 +704,7 @@
         <h1>Hi, I'm<br><em>Andrei Blinov.</em></h1>
         
         <p class="hero-sub">
-          I create 3D visuals and motion-driven stories.
+          I do product and technical 3D visualization, mostly working from CAD data.
         </p>
         
         <p class="hero-desc">
@@ -721,7 +728,7 @@
 
     <div class="hero-right reveal">
       <div class="about-image">
-        <img src="images/andrei.jpg" alt="Andrei Blinov" loading="lazy" />
+        <img src="images/web/andrei.webp" alt="Andrei Blinov" loading="lazy" />
       </div>
     </div>
 
@@ -738,7 +745,8 @@
       <div class="exp-date">03.2026 — Present</div>
       <div class="exp-details">
         <h3>Barthelme LED Solutions</h3>
-        <p>3D Designer (Praktikant)</p>
+        <p>3D Designer (Werkstudent, previously intern)</p>
+        <p class="exp-note">I make the product renders for the catalog and the website: LED profiles, covers, strips. Most models come from engineering as STEP files, I convert them in FreeCAD and do the rest in Blender.</p>
       </div>
     </div>
 
@@ -747,6 +755,7 @@
       <div class="exp-details">
         <h3>Just Taste</h3>
         <p>E-Commerce (Werkstudent)</p>
+        <p class="exp-note">Besides the shop, I cut a product video loop for their trade fair screens.</p>
       </div>
     </div>
 
@@ -754,7 +763,7 @@
       <div class="exp-date">06.2024 — 02.2025</div>
       <div class="exp-details">
         <h3>Aramark</h3>
-        <p>Koch (Werkstudent)</p>
+        <p>Cook (Werkstudent)</p>
       </div>
     </div>
 
@@ -777,7 +786,7 @@
         <p>Moved to Nuremberg for an Orientation Semester with an intensive focus on Blender and 3D fundamentals. Since 01.10.2024, I am officially a Media Engineering student at TH Nürnberg, combining tech & art.</p>
       </div>
       <div class="j-image">
-        <img src="images/ohm.jpg" alt="TH Nürnberg" loading="lazy" />
+        <img src="images/web/th-nuernberg.webp" alt="TH Nürnberg" loading="lazy" />
       </div>
     </div>
 
@@ -791,7 +800,7 @@
         <p>Started studying Architecture at OTH Regensburg, then shifted my focus toward 3D and visual design. I realized I am most motivated by lighting, composition, and storytelling through digital visuals.</p>
       </div>
       <div class="j-image">
-        <img src="images/regensburg.jpg" alt="Regensburg" loading="lazy" />
+        <img src="images/web/regensburg.webp" alt="Regensburg" loading="lazy" />
       </div>
     </div>
 
@@ -802,24 +811,24 @@
       </div>
       <div class="j-content">
         <h3>The Move to Germany:<br>Studienkolleg</h3>
-        <p>Moved to Coburg to attend the Studienkolleg (T-Kurs) to prepare for my university studies in Germany. Successfully graduated with a final grade of 1.8.</p>
+        <p>Moved to Coburg to attend the Studienkolleg (T-Kurs) to prepare for my university studies in Germany. Graduated with a final grade of 1.8 (German scale).</p>
       </div>
       <div class="j-image">
-        <img src="images/coburg.jpg" alt="Coburg" loading="lazy" style="object-position: center top;" />
+        <img src="images/web/coburg.webp" alt="Coburg" loading="lazy" style="object-position: center top;" />
       </div>
     </div>
 
     <div class="journey-item reveal">
       <div class="j-meta">
         <span class="j-loc">Barnaul, RU</span>
-        <span>10.08.2004 – 01.04.2022</span>
+        <span>2004 – 2022</span>
       </div>
       <div class="j-content">
         <h3>The Foundation:<br>Art & Design</h3>
-        <p>Born in Barnaul, where I built my creative discipline. Completed an Ausbildung in Design. Graduated Art School No. 1 with a perfect 1.0 GPA (01.05.2021) and later graduated Lyceum 129, also with a 1.0 GPA (01.04.2022).</p>
+        <p>Born in Barnaul, where I built my creative discipline. Completed an Ausbildung in Design. Graduated from Art School No. 1 with top marks (1.0 on the German scale) in 2021, and from Lyceum 129 with top marks in 2022.</p>
       </div>
       <div class="j-image">
-        <img src="images/barnaul.jpg" alt="Barnaul" loading="lazy" />
+        <img src="images/web/barnaul.webp" alt="Barnaul" loading="lazy" />
       </div>
     </div>
 
@@ -831,6 +840,7 @@
       <p>3D Artist · Product &amp; Environment Visualization</p>
     </div>
     <div class="footer-right">
+      <a href="mailto:andrei.blinov.3d@gmail.com">Email</a>
       <a href="https://www.instagram.com/salimshady9/">Instagram</a>
       <a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">LinkedIn</a>
       <a href="https://t.me/andruha_svinoe_uho">Telegram</a>

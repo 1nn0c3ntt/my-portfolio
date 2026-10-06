@@ -4,7 +4,14 @@
   <link rel="icon" type="image/png" href="images/icon.png">
   <title>Visuals | Andrei Blinov</title>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Andrei Blinov, 3D artist from Nuremberg. Product renders from CAD data, LED lighting products, animation and personal environment projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Visuals | Andrei Blinov" />
+  <meta property="og:description" content="Andrei Blinov, 3D artist from Nuremberg. Product renders from CAD data, LED lighting products, animation and personal environment projects." />
+  <meta property="og:image" content="https://1nn0c3ntt.github.io/my-portfolio/images/web/og-cover.jpg" />
+  <meta property="og:url" content="https://1nn0c3ntt.github.io/my-portfolio/visuals.html" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
@@ -398,7 +405,6 @@
       aspect-ratio: 16/9;
     }
     .feat-images img:not(:first-child) { aspect-ratio: 1/1; }
-    .feat-images img:hover { transform: scale(1.02); }
 
     .feat-copy {
       padding-top: 0.5rem;
@@ -626,6 +632,25 @@
       .feat-copy { position: static; }
       footer { flex-direction: column; gap: 2rem; padding: 2.5rem 1.5rem 4rem; }
     }
+    /* Personal work block */
+    .gallery-bot { padding-bottom: 2rem; }
+    .personal-header {
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem;
+      margin: 4rem 3rem 3rem; padding-top: 4rem; border-top: 1px solid var(--light);
+    }
+    .personal-header h2 {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.01em;
+    }
+    .personal-header span {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid);
+    }
+    .gallery-personal { padding-bottom: 8rem; }
+    @media (max-width: 900px) {
+      .featured > div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+      .featured .feat-copy[style*="display: flex"] { flex-direction: column !important; gap: 2rem !important; }
+      .personal-header { margin: 2rem 1.5rem 2rem; padding-top: 3rem; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+    }
   </style>
 </head>
 
@@ -677,21 +702,21 @@
     </div>
     <div class="hero-right reveal">
       <div class="hero-stats">
-        <div class="hero-stat"><strong>50+</strong><span>Commercial<br>renders</span></div>
-        <div class="hero-stat"><strong>100%</strong><span>Technical<br>Accuracy</span></div>
+        <div class="hero-stat"><strong>100+</strong><span>Commercial<br>renders</span></div>
+        <div class="hero-stat"><strong>Blender</strong><span>Main<br>tool</span></div>
         <div class="hero-stat"><strong>3+</strong><span>Years in<br>3D</span></div>
       </div>
-      <p class="hero-desc">Product renders, environment concepts, and architectural studies — built entirely in 3D. Available for commercial projects.</p>
+      <p class="hero-desc">Product renders from CAD data and a few personal environment projects. Everything here is made in 3D. Open for commercial work.</p>
       <div class="hero-contact">
-        <p>Open for work — send a message</p>
+        <p>Open for work, just send me a message</p>
         <a href="mailto:andrei.blinov.3d@gmail.com">andrei.blinov.3d@gmail.com</a>
       </div>
     </div>
   </section>
 
   <section class="gallery gallery-top">
-    <div class="gallery-item reveal" data-src="images/led_Streifen_Icon.png" data-cat="Product Visualization" data-title="Flexible LED Strip" data-tools="Blender"><img src="images/led_Streifen_Icon.png" alt="Flexible LED Strip Solution" loading="lazy" /><div class="info"><div class="info-meta">Product Visualization</div><div class="info-title">Flexible LED<br>Strip <br> For Barthelme LED Solutions</div><div class="info-tools">Blender</div></div></div>
-    <div class="gallery-item reveal" data-src="images/castle.png" data-cat="Environment Design" data-title="Medieval Castle Stained Glass" data-tools="Blender"><img src="images/castle.png" alt="Medieval Castle Stained Glass" loading="lazy" /><div class="info"><div class="info-meta">Environment Design</div><div class="info-title">Medieval Castle<br>Stained Glass</div><div class="info-tools">Blender</div></div></div>
+    <div class="gallery-item reveal" data-src="images/web/flexible-led-strip.webp" data-cat="Product Visualization" data-title="Flexible LED Strip" data-tools="Blender"><img src="images/web/flexible-led-strip.webp" alt="Flexible LED Strip Solution" loading="lazy" /><div class="info"><div class="info-meta">Product Visualization</div><div class="info-title">Flexible LED<br>Strip <br> For Barthelme LED Solutions</div><div class="info-tools">Blender</div></div></div>
+    <div class="gallery-item reveal" data-src="images/web/greenhec-charger.webp" data-cat="Product Visualization" data-title="GreenHec Charger" data-tools="Blender · Photoshop"><img src="images/web/greenhec-charger.webp" alt="GreenHec Charger Bundle" loading="lazy" /><div class="info"><div class="info-meta">Product Visualization</div><div class="info-title">GreenHec<br>Charger</div><div class="info-tools">Blender · Photoshop</div></div></div>
   </section>
 
   <div class="featured reveal">
@@ -703,11 +728,11 @@
     <div class="feat-copy">
       <span class="feat-eyebrow">Featured Case · CGI Pack</span>
       <h3>Barthelme<br>LED Profiles</h3>
-      <p>A comprehensive professional case study consisting of 51 studio product renders delivered for the official Barthelme LED Solutions product catalog. Built around strict blueprint accuracy and advanced material response.</p>
+      <p>51 studio renders of LED profiles for the Barthelme catalog. The models come straight from the engineering STEP files, so the geometry matches the real product.</p>
       <div class="feat-stats">
         <div><strong>51</strong><span>Renders<br>Delivered</span></div>
-        <div><strong>2</strong><span>Tools<br>Used</span></div>
-        <div><strong>1</strong><span>Satisfied<br>Client</span></div>
+        <div><strong>STEP</strong><span>Source<br>files</span></div>
+        <div><strong>Cycles</strong><span>Render<br>engine</span></div>
       </div>
       <a href="profiles-gallery.html" class="cta-btn">Explore Full Pack</a>
     </div>
@@ -723,11 +748,11 @@
     <div class="feat-copy">
       <span class="feat-eyebrow">Featured Case · Optical CGI Pack</span>
       <h3>Barthelme<br>Abdeckungen</h3>
-      <p>A specialized studio collection of 51 optical cover and diffuser renders created for Barthelme LED Solutions. Focused on realistic translucent polymer transmission, diffusion dispersion, and precise CAD geometry fitting.</p>
+      <p>51 renders of covers and diffusers for the same catalog, in opal and prism versions. Most of the work went into making the translucent plastic and the light coming through it look right.</p>
       <div class="feat-stats">
         <div><strong>51</strong><span>Renders<br>Delivered</span></div>
-        <div><strong>2</strong><span>Tools<br>Used</span></div>
-        <div><strong>100%</strong><span>Shader<br>Precision</span></div>
+        <div><strong>STEP</strong><span>Source<br>files</span></div>
+        <div><strong>Cycles</strong><span>Render<br>engine</span></div>
       </div>
       <a href="covers-gallery.html" class="cta-btn">Explore Full Pack</a>
     </div>
@@ -737,12 +762,12 @@
   <div class="featured reveal" style="margin-top: 5rem; grid-template-columns: 1fr;">
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
       <div class="gallery-item" 
-           data-src="images/LED Streife Hero_Standart.png"
+           data-src="images/web/ledlight-flex-24v.webp"
            data-cat="Product Visualization · Barthelme" 
            data-title="LEDlight flex · Standard" 
            data-tools="Blender · Cycles"
            style="aspect-ratio: 16/9;">
-        <img src="images/LED Streife Hero_Standart.png" alt="Barthelme Standard LED Strip" loading="lazy" />
+        <img src="images/web/ledlight-flex-24v.webp" alt="Barthelme Standard LED Strip" loading="lazy" />
         <div class="info">
           <div class="info-meta">Standard Edition</div>
           <div class="info-title">LEDlight flex 24V</div>
@@ -751,12 +776,12 @@
       </div>
 
       <div class="gallery-item" 
-           data-src="images/LED Streife Hero_Premium.png"
+           data-src="images/web/ledlight-flex-high-pitch.webp"
            data-cat="Product Visualization · Barthelme" 
            data-title="LEDlight flex · High-Density Premium" 
            data-tools="Blender · Cycles"
            style="aspect-ratio: 16/9;">
-        <img src="images/LED Streife Hero_Premium.png" alt="Barthelme Premium LED Strip" loading="lazy" />
+        <img src="images/web/ledlight-flex-high-pitch.webp" alt="Barthelme Premium LED Strip" loading="lazy" />
         <div class="info">
           <div class="info-meta">High-Density Premium</div>
           <div class="info-title">LEDlight flex High Pitch</div>
@@ -769,24 +794,34 @@
       <div style="max-width: 540px;">
         <span class="feat-eyebrow">Commercial Production · Catalog Assets</span>
         <h3 style="margin-bottom: 1rem;">LEDlight flex<br>Catalog Visuals</h3>
-        <p style="margin-bottom: 0;">Studio hero renders developed for Barthelme's official catalog navigation and category headers. Showcasing both standard pitch and high-density premium flex strips with micro-component PCB detailing and accurate copper layer response.</p>
+        <p style="margin-bottom: 0;">Hero renders for the catalog navigation and the category pages. Two strips: the standard 24V one and the high-density version, with the board and the small components modeled in detail.</p>
       </div>
 
       <div class="feat-stats" style="margin-bottom: 0; padding-top: 0; border-top: none; gap: 3rem;">
-        <div><strong>2</strong><span>Product<br>Tiers</span></div>
-        <div><strong>100%</strong><span>Component<br>Accuracy</span></div>
+        <div><strong>2</strong><span>Strip<br>types</span></div>
+        <div><strong>4K</strong><span>Resolution</span></div>
       </div>
     </div>
   </div>
 
   <section class="gallery gallery-bot">
-<div class="gallery-item reveal" data-src="images/AQUALUC_WATER.png" data-cat="Product Detail · Barthelme" data-title="AQUALUC Water Resistance" data-tools="Blender · Cycles"><img src="images/AQUALUC_WATER.png" alt="Barthelme AQUALUC Water Resistance Render" loading="lazy" /><div class="info"><div class="info-meta">Product Detail · Barthelme</div><div class="info-title">AQUALUC<br>Water Resistance</div><div class="info-tools">Blender · Cycles</div></div></div>    <div class="gallery-item reveal" data-src="images/Miami.png" data-cat="Environment Design" data-title="Miami Retro Scene" data-tools="Blender · Photoshop"><img src="images/Miami.png" alt="Miami Retro Scene" loading="lazy" /><div class="info"><div class="info-meta">Environment Design</div><div class="info-title">Miami<br>Retro Scene</div><div class="info-tools">Blender · Photoshop</div></div></div>
-    <div class="gallery-item reveal" data-src="images/car.png" data-cat="Concept Art · 3D Visual" data-title="In-N-Out Space Highway" data-tools="Blender · Photoshop"><img src="images/car.png" alt="In-N-Out Space Highway" loading="lazy" /><div class="info"><div class="info-meta">Concept Art · 3D Visual</div><div class="info-title">In-N-Out<br>Space Highway</div><div class="info-tools">Blender · Photoshop</div></div></div>
-    <div class="gallery-item reveal" data-src="images/charger.jpg" data-cat="Product Visualization" data-title="GreenHec Charger" data-tools="Blender · Photoshop"><img src="images/charger.jpg" alt="GreenHec Charger Bundle" loading="lazy" /><div class="info"><div class="info-meta">Product Visualization</div><div class="info-title">GreenHec<br>Charger</div><div class="info-tools">Blender · Photoshop</div></div></div>
-    <div class="gallery-item reveal" data-src="images/village.png" data-cat="3D Illustration" data-title="Stylized Village" data-tools="Blender"><img src="images/village.png" alt="Stylized Village Scene" loading="lazy" /><div class="info"><div class="info-meta">3D Illustration</div><div class="info-title">Stylized<br>Village</div><div class="info-tools">Blender</div></div></div>
-    <div class="gallery-item reveal" data-src="images/villa.jpg" data-cat="ArchViz Concept" data-title="Modern Villa" data-tools="Blender"><img src="images/villa.jpg" alt="Modern Villa Space" loading="lazy" /><div class="info"><div class="info-meta">ArchViz Concept</div><div class="info-title">Modern<br>Villa</div><div class="info-tools">Blender</div></div></div>
-    <div class="gallery-item reveal" data-src="images/building.jpg" data-cat="Visual Art · CGI" data-title="Urban Conditioning" data-tools="Blender · Photoshop"><img src="images/building.jpg" alt="Urban Conditioning" loading="lazy" /><div class="info"><div class="info-meta">Visual Art · CGI</div><div class="info-title">Urban<br>Conditioning</div><div class="info-tools">Blender · Photoshop</div></div></div>
+    <div class="gallery-item reveal" data-src="images/web/aqualuc-water.webp" data-cat="Product Detail · Barthelme" data-title="AQUALUC Water Resistance" data-tools="Blender · Cycles"><img src="images/web/aqualuc-water.webp" alt="Barthelme AQUALUC Water Resistance Render" loading="lazy" /><div class="info"><div class="info-meta">Product Detail · Barthelme</div><div class="info-title">AQUALUC<br>Water Resistance</div><div class="info-tools">Blender · Cycles</div></div></div>
   </section>
+
+  <div class="personal-header reveal">
+    <h2>Personal Work</h2>
+    <span>Just for fun</span>
+  </div>
+
+  <section class="gallery gallery-personal">
+    <div class="gallery-item reveal" data-src="images/web/castle-stained-glass.webp" data-cat="Environment Design" data-title="Medieval Castle Stained Glass" data-tools="Blender"><img src="images/web/castle-stained-glass.webp" alt="Medieval Castle Stained Glass" loading="lazy" /><div class="info"><div class="info-meta">Environment Design</div><div class="info-title">Medieval Castle<br>Stained Glass</div><div class="info-tools">Blender</div></div></div>
+    <div class="gallery-item reveal" data-src="images/web/miami-retro.webp" data-cat="Environment Design" data-title="Miami Retro Scene" data-tools="Blender · Photoshop"><img src="images/web/miami-retro.webp" alt="Miami Retro Scene" loading="lazy" /><div class="info"><div class="info-meta">Environment Design</div><div class="info-title">Miami<br>Retro Scene</div><div class="info-tools">Blender · Photoshop</div></div></div>
+    <div class="gallery-item reveal" data-src="images/web/stylized-village.webp" data-cat="3D Illustration" data-title="Stylized Village" data-tools="Blender"><img src="images/web/stylized-village.webp" alt="Stylized Village Scene" loading="lazy" /><div class="info"><div class="info-meta">3D Illustration</div><div class="info-title">Stylized<br>Village</div><div class="info-tools">Blender</div></div></div>
+    <div class="gallery-item reveal" data-src="images/web/modern-villa.webp" data-cat="ArchViz Concept" data-title="Modern Villa" data-tools="Blender"><img src="images/web/modern-villa.webp" alt="Modern Villa Space" loading="lazy" /><div class="info"><div class="info-meta">ArchViz Concept</div><div class="info-title">Modern<br>Villa</div><div class="info-tools">Blender</div></div></div>
+    <div class="gallery-item reveal" data-src="images/web/in-n-out-space-highway.webp" data-cat="Concept Art · 3D Visual" data-title="In-N-Out Space Highway" data-tools="Blender · Photoshop"><img src="images/web/in-n-out-space-highway.webp" alt="In-N-Out Space Highway" loading="lazy" /><div class="info"><div class="info-meta">Concept Art · 3D Visual</div><div class="info-title">In-N-Out<br>Space Highway</div><div class="info-tools">Blender · Photoshop</div></div></div>
+    <div class="gallery-item reveal" data-src="images/web/urban-conditioning.webp" data-cat="Visual Art · CGI" data-title="Urban Conditioning" data-tools="Blender · Photoshop"><img src="images/web/urban-conditioning.webp" alt="Urban Conditioning" loading="lazy" /><div class="info"><div class="info-meta">Visual Art · CGI</div><div class="info-title">Urban<br>Conditioning</div><div class="info-tools">Blender · Photoshop</div></div></div>
+  </section>
+
 
   <footer>
     <div class="footer-left">
@@ -794,6 +829,7 @@
       <p>3D Artist · Product &amp; Environment Visualization</p>
     </div>
     <div class="footer-right">
+      <a href="mailto:andrei.blinov.3d@gmail.com">Email</a>
       <a href="https://www.instagram.com/salimshady9/">Instagram</a>
       <a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">LinkedIn</a>
       <a href="https://t.me/andruha_svinoe_uho">Telegram</a>

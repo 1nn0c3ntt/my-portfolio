@@ -39,21 +39,24 @@
     }
 
     @media print {
+      @page { size: A4 portrait; margin: 0; }
+      :root { --fit: 0.91; }
       html, body {
         background: var(--off-white) !important;
         padding: 0 !important;
         margin: 0 !important;
-        width: 210mm;
-        height: 297mm;
-        overflow: hidden;
+        display: block !important;
       }
       .page {
-        width: 210mm !important;
-        height: 297mm !important;
-        max-height: 297mm !important;
+        zoom: var(--fit);
+        width: calc(210mm / var(--fit)) !important;
+        height: calc(297mm / var(--fit)) !important;
+        min-height: 0 !important;
+        max-height: none !important;
         margin: 0 !important;
         box-shadow: none !important;
         padding: 10mm 14mm !important;
+        overflow: hidden !important;
         page-break-after: avoid;
         page-break-inside: avoid;
       }
@@ -513,7 +516,7 @@
             <a href="https://linkedin.com/in/andrei-blinov-38360b340">LinkedIn</a>
           </li>
           <li>
-            <a href="https://telegram.me/andruha_svinoe_uho">Telegram</a>
+            <a href="https://1nn0c3ntt.github.io/my-portfolio/de/visuals.html">1nn0c3ntt.github.io/my-portfolio</a>
           </li>
         </ul>
         <span class="location-tag">Nürnberg, DE</span>
@@ -526,13 +529,14 @@
 
         <div class="info-block">
           <h3 class="no-border">Profil</h3>
-          <p>3D-Designer mit über 3 Jahren Erfahrung in der Produktvisualisierung. Spezialisiert auf Beleuchtung, Retopologie sowie die Erstellung von Hand-Painted- und benutzerdefinierten Texturen. Erfahren in der CAD-Datenaufbereitung für Blender und in der Postproduktion.</p>
+          <p>Ich arbeite seit über drei Jahren in 3D. Aktuell mache ich vor allem Produkt- und technische Renderings auf Basis von CAD-Daten. Am liebsten arbeite ich an Licht und Materialien, dazu kommen Retopologie, Hand-Painted- und prozedurale Texturen sowie Postproduktion.</p>
         </div>
 
         <div class="info-block">
           <h3>Software</h3>
           <ul class="skill-list bullets">
             <li>Blender</li>
+            <li>FreeCAD</li>
             <li>Adobe Photoshop</li>
             <li>Adobe Illustrator</li>
             <li>Premiere Pro</li>
@@ -580,7 +584,8 @@
           <div class="role">3D-Designer (Werkstudent) &middot; zuvor Praktikant (03.2026 — 07.2026)</div>
           <ul>
             <li>Verantwortlich als einziger 3D-Designer für die Erstellung fotorealistischer Produktrenderings und 3D-Animationen für die offizielle Website und Marketingmaterialien.</li>
-            <li>Eigenständige CAD-Datenaufbereitung, Optimierung und Konvertierung komplexer technischer Daten für die Weiterverarbeitung in Blender.</li>
+            <li>Über 100 Renderings für den Produktkatalog erstellt, darunter die kompletten Serien mit 51 LED-Profilen und 51 Abdeckungen.</li>
+            <li>Eigenständige Aufbereitung der CAD-Daten: STEP-Dateien aus der Konstruktion werden in FreeCAD konvertiert, bereinigt und für Blender optimiert.</li>
             <li>Rekonstruktion und 3D-Modellierung von Produkten auf Basis von Fotos oder realen Objekten, wenn keine technischen Zeichnungen verfügbar waren.</li>
             <li>Entwicklung, Inszenierung und Optimierung komplexer Beleuchtungsszenarien.</li>
           </ul>
@@ -595,6 +600,7 @@
           <div class="role">E-Commerce (Werkstudent)</div>
           <ul>
             <li>Pflege und Optimierung des Online-Shops sowie Bearbeitung von Produktbildern.</li>
+            <li>Produktvideo-Loop für die Messescreens geschnitten.</li>
           </ul>
         </div>
 
@@ -673,7 +679,7 @@
   </div>
 
 <div id="download-btn-container">
-    <button class="download-btn" type="button" onclick="generatePDF()">PDF Herunterladen</button>
+    <a class="download-btn" href="CV/Andrei_Blinov_CV_DE.pdf" download="Andrei_Blinov_CV_DE.pdf">PDF Herunterladen</a>
   </div>
 
   <script>

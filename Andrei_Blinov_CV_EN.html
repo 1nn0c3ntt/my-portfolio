@@ -39,21 +39,24 @@
     }
 
     @media print {
+      @page { size: A4 portrait; margin: 0; }
+      :root { --fit: 0.91; }
       html, body {
         background: var(--off-white) !important;
         padding: 0 !important;
         margin: 0 !important;
-        width: 210mm;
-        height: 297mm;
-        overflow: hidden;
+        display: block !important;
       }
       .page {
-        width: 210mm !important;
-        height: 297mm !important;
-        max-height: 297mm !important;
+        zoom: var(--fit);
+        width: calc(210mm / var(--fit)) !important;
+        height: calc(297mm / var(--fit)) !important;
+        min-height: 0 !important;
+        max-height: none !important;
         margin: 0 !important;
         box-shadow: none !important;
         padding: 10mm 14mm !important;
+        overflow: hidden !important;
         page-break-after: avoid;
         page-break-inside: avoid;
       }
@@ -498,7 +501,7 @@
         <h1>Andrei<br><em>Blinov</em></h1>
         <div class="header-meta">
           <span class="eyebrow">3D Designer &middot; Media Engineering</span>
-          <a href="https://1nn0c3ntt.github.io/my-portfolio/en/visuals.html" class="portfolio-cta">View Portfolio →</a>
+          <a href="https://1nn0c3ntt.github.io/my-portfolio/visuals.html" class="portfolio-cta">View Portfolio →</a>
         </div>
       </div>
       <div class="header-contacts">
@@ -513,7 +516,7 @@
             <a href="https://linkedin.com/in/andrei-blinov-38360b340">LinkedIn</a>
           </li>
           <li>
-            <a href="https://telegram.me/andruha_svinoe_uho">Telegram</a>
+            <a href="https://1nn0c3ntt.github.io/my-portfolio/visuals.html">1nn0c3ntt.github.io/my-portfolio</a>
           </li>
         </ul>
         <span class="location-tag">Nuremberg, DE</span>
@@ -526,13 +529,14 @@
 
         <div class="info-block">
           <h3 class="no-border">Profile</h3>
-          <p>3D Designer with over 3 years of experience in product visualization. Specialized in lighting, retopology, and creating hand-painted and custom procedural textures. Experienced in CAD data preparation for Blender and post-production workflows.</p>
+          <p>I have been working in 3D for over three years. These days I mostly do product and technical renders from CAD data. I enjoy working on lighting and materials, and I also do retopology, hand-painted and procedural textures and post-production.</p>
         </div>
 
         <div class="info-block">
           <h3>Software</h3>
           <ul class="skill-list bullets">
             <li>Blender</li>
+            <li>FreeCAD</li>
             <li>Adobe Photoshop</li>
             <li>Adobe Illustrator</li>
             <li>Premiere Pro</li>
@@ -580,7 +584,8 @@
           <div class="role">3D Designer (Working Student) &middot; previously Intern (03.2026 — 07.2026)</div>
           <ul>
             <li>Sole 3D designer responsible for producing photorealistic product renders and 3D animations for the company website and marketing materials.</li>
-            <li>Independent CAD data preparation, mesh optimization, and conversion of complex engineering assets for Blender pipelines.</li>
+            <li>Made over 100 renders for the product catalog, including the full series of 51 LED profiles and 51 covers.</li>
+            <li>Prepared the CAD data myself: converted STEP files from engineering in FreeCAD, cleaned them up and optimized them for Blender.</li>
             <li>Reconstruction and 3D modeling of products based on physical samples and photos when CAD blueprints were unavailable.</li>
             <li>Creation, staging, and fine-tuning of complex studio and environmental lighting setups.</li>
           </ul>
@@ -595,6 +600,7 @@
           <div class="role">E-Commerce (Working Student)</div>
           <ul>
             <li>Maintained and optimized the online store catalog along with product photo editing.</li>
+            <li>Cut a product video loop for the trade fair screens.</li>
           </ul>
         </div>
 
@@ -650,7 +656,7 @@
             <span class="entry-loc">Coburg, DE</span>
           </div>
           <h3>Studienkolleg (T-Course)</h3>
-          <div class="role">Final Grade: 1.8</div>
+          <div class="role">Final grade: 1.8 (German scale)</div>
         </div>
 
         <div class="entry edu">
@@ -659,21 +665,21 @@
             <span class="entry-loc">Barnaul, RU</span>
           </div>
           <h3>Art School (Design Major) &amp; Lyceum</h3>
-          <div class="role">Art School No. 1 (Grade: 1.0) &middot; Lyceum No. 129 (Grade: 1.0)</div>
+          <div class="role">Art School No. 1 (Grade: 1.0, German scale) &middot; Lyceum No. 129 (Grade: 1.0, German scale)</div>
         </div>
 
       </div>
     </div>
 
     <div class="cv-footer">
-      <a href="https://1nn0c3ntt.github.io/my-portfolio/en/visuals.html" class="logo">Andrei Blinov</a>
+      <a href="https://1nn0c3ntt.github.io/my-portfolio/visuals.html" class="logo">Andrei Blinov</a>
       <span class="tagline">3D Artist &middot; Product &amp; Environment Visualization</span>
     </div>
 
   </div>
 
   <div id="download-btn-container">
-    <button class="download-btn" type="button" onclick="generatePDF()">Download PDF</button>
+    <a class="download-btn" href="CV/Andrei_Blinov_CV_EN.pdf" download="Andrei_Blinov_CV_EN.pdf">Download PDF</a>
   </div>
 
   <script>
