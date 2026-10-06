@@ -2,15 +2,15 @@
 <html lang="ru">
 <head>
   <link rel="icon" type="image/png" href="../images/icon.png">
-  <title>Моушен | Andrei Blinov</title>
+  <title>Рассеиватели Barthelme | Andrei Blinov</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Андрей Блинов, 3D-артист из Нюрнберга. Рендеры продуктов по CAD-данным, LED-светильники, анимация и личные проекты." />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Моушен | Andrei Blinov" />
+  <meta property="og:title" content="Barthelme Abdeckungen | Andrei Blinov" />
   <meta property="og:description" content="Андрей Блинов, 3D-артист из Нюрнберга. Рендеры продуктов по CAD-данным, LED-светильники, анимация и личные проекты." />
   <meta property="og:image" content="https://1nn0c3ntt.github.io/my-portfolio/images/web/og-cover.jpg" />
-  <meta property="og:url" content="https://1nn0c3ntt.github.io/my-portfolio/ru/motion.html" />
+  <meta property="og:url" content="https://1nn0c3ntt.github.io/my-portfolio/ru/covers-gallery.html" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <style>
@@ -153,7 +153,7 @@
       padding: 0 3rem 4.5rem;
       gap: 4rem;
       border-bottom: 1px solid var(--light);
-      overflow: hidden; 
+      overflow: hidden;
     }
 
     .hero-abstract {
@@ -164,48 +164,27 @@
       height: 100vh;
       overflow: hidden;
       z-index: 0;
-      opacity: 0.85;
       pointer-events: none;
     }
-    
     .hero-abstract svg {
       width: 100%;
       height: 100%;
     }
 
-    .wave-group-1 { 
-      animation: drift1 20s ease-in-out infinite alternate; 
-      transform-origin: center; 
+    .arch-rotate {
+      transform-origin: 1000px 400px;
+      animation: slowSpin 150s linear infinite;
     }
-    .wave-group-2 { 
-      animation: drift2 25s ease-in-out infinite alternate-reverse; 
-      transform-origin: center; 
-    }
-
-    .spline {
-      stroke-dasharray: 1200 1200;
-      stroke-linecap: round;
-    }
-    
-    .spline-1 { animation: flowLine 25s linear infinite; }
-    .spline-2 { animation: flowLine 30s linear infinite reverse; }
-    .spline-3 { animation: flowLine 22s linear infinite; }
-    .spline-4 { animation: flowLine 28s linear infinite reverse; }
-    .spline-5 { animation: flowLine 35s linear infinite; }
-    .spline-6 { animation: flowLine 26s linear infinite reverse; }
-
-    @keyframes flowLine {
-      from { stroke-dashoffset: 2400; }
-      to { stroke-dashoffset: 0; }
+    @keyframes slowSpin {
+      to { transform: rotate(360deg); }
     }
 
-    @keyframes drift1 {
-      from { transform: translateY(-20px) rotate(-1deg) scale(1.05); }
-      to { transform: translateY(20px) rotate(1deg) scale(1.05); }
+    .arch-lines {
+      stroke-dasharray: 8 16;
+      animation: dashMove 30s linear infinite;
     }
-    @keyframes drift2 {
-      from { transform: translateY(20px) rotate(1.5deg) scale(1.05); }
-      to { transform: translateY(-20px) rotate(-1.5deg) scale(1.05); }
+    @keyframes dashMove {
+      to { stroke-dashoffset: -1000; }
     }
 
     .hero-left {
@@ -213,6 +192,20 @@
       position: relative;
       z-index: 2;
     }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--black); }
 
     .hero-eyebrow {
       font-size: 0.68rem;
@@ -244,7 +237,6 @@
       position: relative;
       z-index: 2;
     }
-
     .hero-stats {
       display: flex;
       gap: 3.5rem;
@@ -263,132 +255,67 @@
       text-transform: uppercase;
       color: var(--mid);
     }
-
     .hero-desc {
       font-size: 0.92rem;
       color: var(--mid);
       line-height: 1.75;
-      max-width: 380px;
+      max-width: 480px;
     }
 
-    .hero-contact {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-    .hero-contact p {
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--mid);
-    }
-    .hero-contact a {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1rem, 1.8vw, 1.5rem);
-      font-style: italic;
-      color: var(--black);
-      text-decoration: none;
-      border-bottom: 1px solid var(--light);
-      padding-bottom: 6px;
-      transition: border-color 0.3s, color 0.3s;
-      display: inline-block;
-    }
-    .hero-contact a:hover {
-      border-color: var(--black);
-    }
-
-    .video-gallery {
-      padding: 6rem 3rem 8rem;
+    .catalog-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .video-item {
-      display: flex;
-      flex-direction: column;
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
-    }
-    
-    .video-item.full {
-      grid-column: span 2;
+      padding: 6rem 3rem 8rem;
     }
 
-    .video-container {
+    .grid-item {
       position: relative;
-      background: var(--black);
+      background: #e4e2db;
+      aspect-ratio: 1 / 1;
       overflow: hidden;
-      border-radius: 2px;
+      cursor: pointer;
     }
-    .video-container.horizontal {
-      padding-bottom: 56.25%;
+
+    .grid-item img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .video-container.vertical {
-      padding-bottom: 110%;
-      max-width: 380px;
-      width: 100%;
-      margin: 0 auto;
-    }
-    .video-container iframe {
+    .grid-item:hover img { transform: scale(1.04); }
+
+    .grid-item .overlay {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: 0;
-    }
-
-    .video-info {
+      inset: 0;
+      background: rgba(10,10,10,0.3);
+      opacity: 0;
+      transition: opacity 0.3s ease;
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .video-item.full .video-info {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .video-item:not(.full) .video-info {
-      text-align: center;
       align-items: center;
-      max-width: 380px;
-      margin: 0 auto;
+      justify-content: center;
     }
-
-    .video-info h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.8rem, 2.5vw, 2.2rem);
-      font-weight: 400;
-      color: var(--black);
-      line-height: 1.15;
-    }
-    .video-info p {
-      font-size: 0.95rem;
-      color: var(--mid);
-      line-height: 1.7;
-    }
-
-    .meta {
+    .grid-item:hover .overlay { opacity: 1; }
+    
+    .overlay-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.4);
       display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      margin-top: 1rem;
-    }
-    .video-item:not(.full) .meta {
       align-items: center;
+      justify-content: center;
+      color: #fff;
+      transform: scale(0.8);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
     }
-    .meta span {
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--mid);
-    }
-    .meta strong {
-      color: var(--black);
-      font-weight: 500;
-      margin-right: 0.3rem;
+    .grid-item:hover .overlay-icon { 
+      transform: scale(1); 
+      background: rgba(255, 255, 255, 0.1); 
+      backdrop-filter: blur(4px); 
+      -webkit-backdrop-filter: blur(4px);
     }
 
     footer {
@@ -411,10 +338,73 @@
     }
     .footer-right a:hover { color: var(--black); }
 
+    #imageModal {
+      position: fixed; inset: 0;
+      background: rgba(247,246,243,0.97);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    #imageModal.open { opacity: 1; pointer-events: auto; }
+    #modalImg {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+      transform: scale(0.96);
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    #imageModal.open #modalImg { transform: scale(1); }
+
+    .modal-close {
+      position: fixed;
+      top: 2rem; right: 2.5rem;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--black);
+      cursor: pointer;
+      background: none;
+      border: none;
+      opacity: 0.4;
+      transition: opacity 0.2s;
+    }
+    .modal-close:hover { opacity: 1; }
+
+    .modal-nav {
+      position: fixed;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.8rem;
+    }
+    .modal-nav button {
+      background: none;
+      border: 1px solid var(--light);
+      color: var(--black);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s;
+    }
+    .modal-nav button:hover {
+      background: var(--black);
+      color: var(--off-white);
+      border-color: var(--black);
+    }
+
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .reveal.visible { opacity: 1; transform: none; }
 
@@ -479,17 +469,12 @@
 
       .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; min-height: auto; gap: 2.5rem; }
       .hero-left, .hero-right { padding-top: 0; }
-      
-      .video-gallery { grid-template-columns: 1fr; padding: 4rem 1.5rem 5rem; gap: 5rem; }
-      .video-item.full { grid-column: span 1; }
-      
-      .video-item.full .video-info { grid-template-columns: 1fr; gap: 1.5rem; }
-      
-      .video-container.vertical { max-width: 100%; padding-bottom: 125%; }
-      .video-item:not(.full) .video-info { max-width: 100%; text-align: left; align-items: flex-start; }
-      .video-item:not(.full) .meta { align-items: flex-start; }
-
+      .catalog-grid { grid-template-columns: repeat(2, 1fr); padding: 3rem 1.5rem 5rem; gap: 1rem; }
       footer { flex-direction: column; gap: 2rem; padding: 2.5rem 1.5rem 4rem; }
+    }
+    
+    @media (max-width: 500px) {
+      .catalog-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -508,8 +493,8 @@
     <div class="nav-menu" id="nav-menu">
       <ul class="nav-links">
         <li><a href="index.html">Обо мне</a></li>
-        <li><a href="visuals.html">Визуал</a></li>
-        <li class="active"><a href="motion.html">Моушен</a></li>
+        <li class="active"><a href="visuals.html">Визуал</a></li>
+        <li><a href="motion.html">Моушен</a></li>
       </ul>
       <div class="nav-controls">
         <ul class="nav-icons">
@@ -541,9 +526,9 @@
           </li>
         </ul>
         <div class="nav-langs">
-          <a href="../motion.html">EN</a>
-          <a href="../de/motion.html">DE</a>
-          <a href="motion.html" class="active">RU</a>
+          <a href="../covers-gallery.html">EN</a>
+          <a href="../de/covers-gallery.html">DE</a>
+          <a href="covers-gallery.html" class="active">RU</a>
         </div>
       </div>
     </div>
@@ -553,128 +538,48 @@
     
     <div class="hero-abstract">
       <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="var(--mid)" stop-opacity="0" />
-            <stop offset="50%" stop-color="var(--mid)" stop-opacity="0.35" />
-            <stop offset="100%" stop-color="var(--mid)" stop-opacity="0" />
-          </linearGradient>
-        </defs>
-        
-        <g fill="none" stroke="url(#line-grad)" stroke-width="1.5">
-          <g class="wave-group-1">
-            <path class="spline spline-1" d="M -200,600 C 400,900 800,100 1600,400" />
-            <path class="spline spline-2" d="M -200,620 C 420,920 820,120 1600,420" />
-            <path class="spline spline-3" d="M -200,640 C 440,940 840,140 1600,440" />
-          </g>
+        <g stroke="var(--mid)" fill="none" opacity="0.3">
           
-          <g class="wave-group-2">
-            <path class="spline spline-4" d="M -200,200 C 500,-100 900,1000 1600,300" />
-            <path class="spline spline-5" d="M -200,220 C 520,-80 920,1020 1600,320" />
-            <path class="spline spline-6" d="M -200,240 C 540,-60 940,1040 1600,340" />
+          <g class="arch-rotate">
+            <circle cx="1000" cy="400" r="350" stroke-width="0.5" stroke-dasharray="4 12" />
+            <circle cx="1000" cy="400" r="500" stroke-width="0.5" stroke-dasharray="1 6" opacity="0.6" />
+            <circle cx="1000" cy="400" r="700" stroke-width="0.25" />
           </g>
+
+          <line x1="-200" y1="200" x2="1600" y2="700" stroke-width="1" />
+          <line x1="-200" y1="230" x2="1600" y2="730" stroke-width="0.5" />
+          <line x1="-200" y1="280" x2="1600" y2="780" stroke-width="0.5" class="arch-lines" />
+          <line x1="-200" y1="310" x2="1600" y2="810" stroke-width="1" />
+          
+          <line x1="-100" y1="800" x2="1500" y2="-100" stroke-width="0.5" />
+          <line x1="200" y1="900" x2="1600" y2="100" stroke-width="0.5" opacity="0.5" />
+
         </g>
       </svg>
     </div>
 
     <div class="hero-left reveal">
-      <span class="hero-eyebrow">Анимация и Монтаж</span>
-      <h1>Моушен<br><em>Графика</em></h1>
+      <a href="visuals.html" class="back-link">← Назад к визуалу</a>
+      <span class="hero-eyebrow">Коммерческий проект</span>
+      <h1>Barthelme<br><em>Рассеиватели</em></h1>
     </div>
-    
     <div class="hero-right reveal">
       <div class="hero-stats">
         <div class="hero-stat">
-          <strong>3+</strong>
-          <span>Года в<br>3D</span>
+          <strong>51</strong>
+          <span>Финальных<br>рендеров</span>
+        </div>
+        <div class="hero-stat">
+          <strong>STEP</strong>
+          <span>Исходные<br>файлы</span>
         </div>
       </div>
-      <p class="hero-desc">3D анимация, монтирование роликов и сторителлинг. Открыт к коммерческим проектам.</p>
-      <div class="hero-contact">
-        <p>Открыт к предложениям, пишите</p>
-        <a href="mailto:andrei.blinov.3d@gmail.com">andrei.blinov.3d@gmail.com</a>
-      </div>
+      <p class="hero-desc">51 рендер крышек и рассеивателей (Abdeckungen) для каталога Barthelme, опаловые и призматические. Самое сложное было с полупрозрачным пластиком и тем, как через него проходит свет.</p>
     </div>
   </section>
 
-  <section class="video-gallery">
-
-    <div class="video-item full reveal">
-      <div class="video-container horizontal">
-        <iframe
-          src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=bau_anim_t9h8wf"
-          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="video-info">
-        <h2>Техническая визуализация</h2>
-        <div>
-          <p>Визуализация процесса строительства: установка опалубки, заливка бетона, монтаж освещения и сборка модульного помещения.</p>
-          <div class="meta">
-            <span><strong>Роль:</strong> 3D анимация, свет, рендер</span>
-            <span><strong>Инструменты:</strong> Blender</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-item reveal">
-      <div class="video-container vertical">
-        <iframe
-          src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=Animation_Messe_odcmir"
-          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="video-info">
-        <h2>Just Taste: Выставка</h2>
-        <p>Бесшовный тихий цикл для выставочных экранов, с фокусом на продукте и его ключевых особенностях.</p>
-        <div class="meta">
-          <span><strong>Роль:</strong> монтаж цикла, продуктовый пейсинг</span>
-          <span><strong>Инструменты:</strong> Premiere Pro</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-item reveal">
-      <div class="video-container vertical">
-        <iframe
-          src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=pants_1_axro8a"
-          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="video-info">
-        <h2>Реклама Paigh Apparel</h2>
-        <p>Короткая реклама для соцсетей с динамичным монтажом, ритмом и атмосферным продуктовым сторителлингом.</p>
-        <div class="meta">
-          <span><strong>Роль:</strong> монтаж, ритм, сторителлинг</span>
-          <span><strong>Инструменты:</strong> Premiere Pro</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-item full reveal">
-      <div class="video-container horizontal">
-        <iframe
-          src="https://player.cloudinary.com/embed/?cloud_name=dk80mnxk9&public_id=Cat_vjckos"
-          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="video-info">
-        <h2>Сцена с киоском</h2>
-        <div>
-          <p>Атмосферная анимация окружения с упором на настроение, объемный свет и частицы снега.</p>
-          <div class="meta">
-            <span><strong>Роль:</strong> 3D окружение, свет, анимация</span>
-            <span><strong>Инструменты:</strong> Blender, Premiere Pro</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <section class="catalog-grid" id="catalogGrid">
+    <!-- Сетка генерируется через JS -->
   </section>
 
   <footer>
@@ -690,18 +595,89 @@
     </div>
   </footer>
 
+  <div id="imageModal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" aria-label="Schließen">&times;</button>
+    <img id="modalImg" src="" alt="Produktvorschau" />
+    
+    <div class="modal-nav">
+      <button id="modalPrev">← Назад</button>
+      <button id="modalNext">Вперед →</button>
+    </div>
+  </div>
+
   <script>
+    const svgIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`;
+    const catalogGrid = document.getElementById('catalogGrid');
+    const TOTAL_ITEMS = 51;
+
+    // Путь с учетом того, что файл лежит внутри папки de/
+    for (let i = 1; i <= TOTAL_ITEMS; i++) {
+      const src = `../images/abd_webp/${i}.webp`;
+      const item = document.createElement('div');
+      item.className = 'grid-item reveal';
+      item.setAttribute('data-src', src);
+      item.innerHTML = `
+        <img src="${src}" alt="Abdeckung Rendering ${i}" loading="lazy" />
+        <div class="overlay">
+          <div class="overlay-icon">${svgIcon}</div>
+        </div>
+      `;
+      catalogGrid.appendChild(item);
+    }
+
+    // Scroll reveal
     const revealEls = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          setTimeout(() => e.target.classList.add('visible'), i * 30);
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.02 }); 
     revealEls.forEach(el => io.observe(el));
 
+    // Модалка
+    const items = Array.from(document.querySelectorAll('.grid-item[data-src]'));
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    let current = 0;
+
+    function openModal(index) {
+      current = index;
+      modalImg.src = items[index].dataset.src;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+      modal.classList.remove('open');
+      setTimeout(() => { if (!modal.classList.contains('open')) modalImg.src = ''; }, 500);
+      document.body.style.overflow = '';
+    }
+
+    items.forEach((el, i) => el.addEventListener('click', () => openModal(i)));
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    
+    document.getElementById('modalPrev').addEventListener('click', e => {
+      e.stopPropagation();
+      openModal((current - 1 + items.length) % items.length);
+    });
+    
+    document.getElementById('modalNext').addEventListener('click', e => {
+      e.stopPropagation();
+      openModal((current + 1) % items.length);
+    });
+    
+    document.addEventListener('keydown', e => {
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') openModal((current - 1 + items.length) % items.length);
+      if (e.key === 'ArrowRight') openModal((current + 1) % items.length);
+    });
+
+    // Бургер меню
     const burger = document.getElementById('burger');
     const navMenu = document.getElementById('nav-menu');
 

@@ -4,7 +4,14 @@
   <link rel="icon" type="image/png" href="../images/icon.png">
   <title>Обо мне | Andrei Blinov</title>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Андрей Блинов, 3D-артист из Нюрнберга. Рендеры продуктов по CAD-данным, LED-светильники, анимация и личные проекты." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Обо мне | Andrei Blinov" />
+  <meta property="og:description" content="Андрей Блинов, 3D-артист из Нюрнберга. Рендеры продуктов по CAD-данным, LED-светильники, анимация и личные проекты." />
+  <meta property="og:image" content="https://1nn0c3ntt.github.io/my-portfolio/images/web/og-cover.jpg" />
+  <meta property="og:url" content="https://1nn0c3ntt.github.io/my-portfolio/ru/index.html" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
@@ -371,9 +378,6 @@
       display: block;
       transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .hero-right:hover .about-image img {
-      transform: scale(1.02);
-    }
 
     .section-header {
       padding: 4rem 3rem 2rem;
@@ -428,6 +432,12 @@
       font-size: 0.95rem;
       color: var(--mid);
       font-weight: 400;
+    }
+    .exp-details p.exp-note {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      max-width: 560px;
     }
 
     .journey {
@@ -485,9 +495,6 @@
       object-fit: cover;
       display: block;
       transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .journey-item:hover .j-image img {
-      transform: scale(1.05);
     }
 
     footer {
@@ -694,11 +701,11 @@
         <h1>Привет, я<br><em>Андрей Блинов.</em></h1>
         
         <p class="hero-sub">
-          Я создаю 3D-визуал и моушен-ролики.
+          Занимаюсь продуктовой и технической 3D-визуализацией, в основном по CAD-моделям.
         </p>
         
         <p class="hero-desc">
-          Студент факультета Media Engineering в TH Nürnberg с художественным бэкграундом. Увлекаюсь постановкой света, композицией и технической точностью в 3D. В данный момент ищу позицию Работающего студента.
+          Студент факультета Media Engineering в TH Nürnberg с художественным бэкграундом. Увлекаюсь постановкой света, композицией и технической точностью в 3D. Открыт к позиции Werkstudent.
         </p>
         
         <div class="hero-actions">
@@ -718,7 +725,7 @@
 
     <div class="hero-right reveal">
       <div class="about-image">
-        <img src="../images/andrei.jpg" alt="Andrei Blinov" loading="lazy" />
+        <img src="../images/web/andrei.webp" alt="Andrei Blinov" loading="lazy" />
       </div>
     </div>
 
@@ -735,7 +742,8 @@
       <div class="exp-date">03.2026 — Наст. время</div>
       <div class="exp-details">
         <h3>Barthelme LED Solutions</h3>
-        <p>3D Дизайнер (Praktikant)</p>
+        <p>3D-дизайнер (Werkstudent, ранее стажёр)</p>
+        <p class="exp-note">Делаю рендеры продуктов для каталога и сайта: LED-профили, рассеиватели, ленты. Модели обычно приходят от конструкторов в STEP, я перевожу их через FreeCAD и дальше работаю в Blender.</p>
       </div>
     </div>
 
@@ -744,6 +752,7 @@
       <div class="exp-details">
         <h3>Just Taste</h3>
         <p>E-Commerce (Werkstudent)</p>
+        <p class="exp-note">Кроме магазина, смонтировал видео-луп с продуктами для экранов на выставке.</p>
       </div>
     </div>
 
@@ -751,7 +760,7 @@
       <div class="exp-date">06.2024 — 02.2025</div>
       <div class="exp-details">
         <h3>Aramark</h3>
-        <p>Koch (Werkstudent)</p>
+        <p>Повар (Werkstudent)</p>
       </div>
     </div>
 
@@ -774,7 +783,7 @@
         <p>Переехал в Нюрнберг на Orientation Semester с упором на Blender и основы 3D. С 01.10.2024 официально студент направления Media Engineering в TH Nürnberg, объединяю технологии и искусство.</p>
       </div>
       <div class="j-image">
-        <img src="../images/ohm.jpg" alt="TH Nürnberg" loading="lazy" />
+        <img src="../images/web/th-nuernberg.webp" alt="TH Nürnberg" loading="lazy" />
       </div>
     </div>
 
@@ -788,7 +797,7 @@
         <p>Начал изучать архитектуру в OTH Regensburg, затем сместил фокус на 3D и визуальный дизайн. Понял, что меня больше всего мотивирует работа со светом, композиция и сторителлинг через цифровую графику.</p>
       </div>
       <div class="j-image">
-        <img src="../images/regensburg.jpg" alt="Regensburg" loading="lazy" />
+        <img src="../images/web/regensburg.webp" alt="Regensburg" loading="lazy" />
       </div>
     </div>
 
@@ -799,24 +808,24 @@
       </div>
       <div class="j-content">
         <h3>Переезд в Германию:<br>Штудиенколлег</h3>
-        <p>Переехал в Кобург для учебы в Штудиенколлеге (T-Kurs) и подготовки к поступлению в университет в Германии. Успешно окончил с итоговой оценкой 1.8.</p>
+        <p>Переехал в Кобург для учебы в Штудиенколлеге (T-Kurs) и подготовки к поступлению в университет в Германии. Окончил с итоговой оценкой 1,8 (по немецкой шкале).</p>
       </div>
       <div class="j-image">
-        <img src="../images/coburg.jpg" alt="Coburg" loading="lazy" style="object-position: center top;" />
+        <img src="../images/web/coburg.webp" alt="Coburg" loading="lazy" style="object-position: center top;" />
       </div>
     </div>
 
     <div class="journey-item reveal">
       <div class="j-meta">
         <span class="j-loc">Барнаул, Россия</span>
-        <span>10.08.2004 – 01.04.2022</span>
+        <span>2004 – 2022</span>
       </div>
       <div class="j-content">
         <h3>Основа:<br>Искусство и Дизайн</h3>
-        <p>Родился в Барнауле, где заложил основы своей творческой дисциплины. Окончил Ausbildung по направлению Дизайн. Окончил Художественную школу №1 с отличием (средний балл 1.0, 01.05.2021), а позже и Лицей №129, также с отличием (1.0, 01.04.2022).</p>
+        <p>Родился в Барнауле, где заложил основы своей творческой дисциплины. Окончил Ausbildung по направлению Дизайн. Окончил Художественную школу №1 с отличием в 2021 году и Лицей №129, также с отличием, в 2022 году.</p>
       </div>
       <div class="j-image">
-        <img src="../images/barnaul.jpg" alt="Barnaul" loading="lazy" />
+        <img src="../images/web/barnaul.webp" alt="Barnaul" loading="lazy" />
       </div>
     </div>
 
@@ -828,6 +837,7 @@
       <p>3D Artist · Визуализация продуктов и окружения</p>
     </div>
     <div class="footer-right">
+      <a href="mailto:andrei.blinov.3d@gmail.com">Почта</a>
       <a href="https://www.instagram.com/salimshady9/">Instagram</a>
       <a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">LinkedIn</a>
       <a href="https://t.me/andruha_svinoe_uho">Telegram</a>
