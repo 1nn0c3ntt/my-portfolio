@@ -4,7 +4,14 @@
   <link rel="icon" type="image/png" href="../images/icon.png">
   <title>Über mich | Andrei Blinov</title>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Andrei Blinov, 3D-Artist aus Nürnberg. Produktrenderings aus CAD-Daten, LED-Leuchten, Animation und eigene Environment-Projekte." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Über mich | Andrei Blinov" />
+  <meta property="og:description" content="Andrei Blinov, 3D-Artist aus Nürnberg. Produktrenderings aus CAD-Daten, LED-Leuchten, Animation und eigene Environment-Projekte." />
+  <meta property="og:image" content="https://1nn0c3ntt.github.io/my-portfolio/images/web/og-cover.jpg" />
+  <meta property="og:url" content="https://1nn0c3ntt.github.io/my-portfolio/de/index.html" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
@@ -371,9 +378,6 @@
       display: block;
       transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .hero-right:hover .about-image img {
-      transform: scale(1.02);
-    }
 
     .section-header {
       padding: 4rem 3rem 2rem;
@@ -428,6 +432,12 @@
       font-size: 0.95rem;
       color: var(--mid);
       font-weight: 400;
+    }
+    .exp-details p.exp-note {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      max-width: 560px;
     }
 
     .journey {
@@ -485,9 +495,6 @@
       object-fit: cover;
       display: block;
       transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .journey-item:hover .j-image img {
-      transform: scale(1.05);
     }
 
     footer {
@@ -694,7 +701,7 @@
         <h1>Hi, ich bin<br><em>Andrei Blinov.</em></h1>
         
         <p class="hero-sub">
-          Ich erstelle 3D-Visualisierungen und bewegte Geschichten.
+          Ich mache Produkt- und technische 3D-Visualisierung, meistens auf Basis von CAD-Daten.
         </p>
         
         <p class="hero-desc">
@@ -718,7 +725,7 @@
 
     <div class="hero-right reveal">
       <div class="about-image">
-        <img src="../images/andrei.jpg" alt="Andrei Blinov" loading="lazy" />
+        <img src="../images/web/andrei.webp" alt="Andrei Blinov" loading="lazy" />
       </div>
     </div>
 
@@ -735,7 +742,8 @@
       <div class="exp-date">03.2026 — Heute</div>
       <div class="exp-details">
         <h3>Barthelme LED Solutions</h3>
-        <p>3D Designer (Praktikant)</p>
+        <p>3D Designer (Werkstudent, zuvor Praktikant)</p>
+        <p class="exp-note">Ich erstelle die Produktrenderings für Katalog und Website: LED-Profile, Abdeckungen, Strips. Die Modelle kommen meist als STEP-Dateien aus der Konstruktion, ich bereite sie in FreeCAD auf und rendere in Blender.</p>
       </div>
     </div>
 
@@ -744,6 +752,7 @@
       <div class="exp-details">
         <h3>Just Taste</h3>
         <p>E-Commerce (Werkstudent)</p>
+        <p class="exp-note">Neben dem Shop habe ich einen Produktvideo-Loop für die Messescreens geschnitten.</p>
       </div>
     </div>
 
@@ -774,7 +783,7 @@
         <p>Umzug nach Nürnberg für ein Orientierungssemester mit intensivem Fokus auf Blender und 3D-Grundlagen. Seit dem 01.10.2024 bin ich offiziell Media Engineering Student an der TH Nürnberg und verbinde Technik & Kunst.</p>
       </div>
       <div class="j-image">
-        <img src="../images/ohm.jpg" alt="TH Nürnberg" loading="lazy" />
+        <img src="../images/web/th-nuernberg.webp" alt="TH Nürnberg" loading="lazy" />
       </div>
     </div>
 
@@ -785,10 +794,10 @@
       </div>
       <div class="j-content">
         <h3>Der Wechsel: Von<br>Architektur zu 3D</h3>
-        <p>Beginn des Architekturstudiums an der OTH Regensburg, then Verlagerung meines Fokus auf 3D und Visual Design. Mir wurde klar, dass mich Beleuchtung, Komposition und Storytelling durch digitale Visuals am meisten motivieren.</p>
+        <p>Beginn des Architekturstudiums an der OTH Regensburg, danach Verlagerung meines Fokus auf 3D und Visual Design. Mir wurde klar, dass mich Beleuchtung, Komposition und Storytelling durch digitale Visuals am meisten motivieren.</p>
       </div>
       <div class="j-image">
-        <img src="../images/regensburg.jpg" alt="Regensburg" loading="lazy" />
+        <img src="../images/web/regensburg.webp" alt="Regensburg" loading="lazy" />
       </div>
     </div>
 
@@ -799,24 +808,24 @@
       </div>
       <div class="j-content">
         <h3>Der Umzug nach Deutschland:<br>Studienkolleg</h3>
-        <p>Umzug nach Coburg zum Besuch des Studienkollegs (T-Kurs) zur Vorbereitung auf mein Universitätsstudium in Deutschland. Erfolgreicher Abschluss mit der Note 1,8.</p>
+        <p>Umzug nach Coburg zum Besuch des Studienkollegs (T-Kurs) zur Vorbereitung auf mein Universitätsstudium in Deutschland. Abschluss mit der Note 1,8.</p>
       </div>
       <div class="j-image">
-        <img src="../images/coburg.jpg" alt="Coburg" loading="lazy" style="object-position: center top;" />
+        <img src="../images/web/coburg.webp" alt="Coburg" loading="lazy" style="object-position: center top;" />
       </div>
     </div>
 
     <div class="journey-item reveal">
       <div class="j-meta">
         <span class="j-loc">Barnaul, RU</span>
-        <span>10.08.2004 – 01.04.2022</span>
+        <span>2004 – 2022</span>
       </div>
       <div class="j-content">
         <h3>Das Fundament:<br>Kunst & Design</h3>
-        <p>Geboren in Barnaul, wo ich meine kreative Disziplin aufgebaut habe. Ausbildung im Bereich Design absolviert. Abschluss der Kunstschule Nr. 1 mit der Bestnote 1,0 (01.05.2021) und später Abschluss des Lyzeums 129, ebenfalls mit 1,0 (01.04.2022).</p>
+        <p>Geboren in Barnaul, wo ich meine kreative Disziplin aufgebaut habe. Ausbildung im Bereich Design absolviert. Abschluss der Kunstschule Nr. 1 mit Auszeichnung (umgerechnet 1,0) im Jahr 2021 und des Lyzeums 129, ebenfalls mit Auszeichnung, im Jahr 2022.</p>
       </div>
       <div class="j-image">
-        <img src="../images/barnaul.jpg" alt="Barnaul" loading="lazy" />
+        <img src="../images/web/barnaul.webp" alt="Barnaul" loading="lazy" />
       </div>
     </div>
 
@@ -828,6 +837,7 @@
       <p>3D Artist · Produkt- &amp; Umgebungs-Visualisierung</p>
     </div>
     <div class="footer-right">
+      <a href="mailto:andrei.blinov.3d@gmail.com">E-Mail</a>
       <a href="https://www.instagram.com/salimshady9/">Instagram</a>
       <a href="https://www.linkedin.com/in/andrei-blinov-38360b340/">LinkedIn</a>
       <a href="https://t.me/andruha_svinoe_uho">Telegram</a>
